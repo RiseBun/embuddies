@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Emboddies is a small edit of objects, textures, and rituals for the everyday." />
+  <title>Emboddies - objects with a point of view</title>
+  <style>
+    :root {
+      --ink: #18201d;
+      --paper: #f4f1ea;
+      --line: rgba(24, 32, 29, .16);
+      --rust: #bd5d3d;
+      --sage: #aebba9;
+      --mist: #dbe3dc;
+      --white: #fbfaf7;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 4vw;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .topline p { margin: 0; }
+    .topline a { text-decoration: underline; text-underline-offset: 3px; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 4vw 18px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 2;
+    }
+    .wordmark {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+    nav { display: flex; gap: clamp(18px, 3vw, 42px); margin-left: auto; margin-right: 4vw; }
+    nav a { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .cart {
+      border: 1px solid var(--ink);
+      padding: 9px 12px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .cart:hover { background: var(--ink); color: var(--paper); }
+
+    main { overflow: hidden; }
+    .hero {
+      min-height: min(670px, 78vh);
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(34px, 7vw, 100px) 5vw clamp(30px, 5vw, 70px);
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--rust); }
+    h1 {
+      max-width: 680px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(56px, 8.5vw, 132px);
+      font-weight: 400;
+      letter-spacing: -.08em;
+      line-height: .84;
+    }
+    .hero-note {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      max-width: 540px;
+    }
+    .hero-note p { max-width: 310px; margin: 0; font-size: 14px; }
+    .circle-link {
+      display: grid;
+      width: 84px;
+      height: 84px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-family: var(--serif);
+      font-size: 13px;
+      text-align: center;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .circle-link:hover { transform: rotate(-8deg); background: var(--rust); color: var(--white); border-color: var(--rust); }
+    .hero-media {
+      min-height: 500px;
+      background: url('https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=1500&q=85') center/cover;
+      position: relative;
+    }
+    .hero-media::after {
+      content: '01 / 03';
+      position: absolute;
+      bottom: 19px;
+      right: 22px;
+      padding: 5px 8px;
+      color: var(--white);
+      background: rgba(24, 32, 29, .76);
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .section { padding: clamp(60px, 8vw, 120px) 4vw; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+    h2 { margin: 0; font-family: var(--serif); font-size: clamp(42px, 5.6vw, 82px); font-weight: 400; letter-spacing: -.07em; line-height: .9; }
+    .section-head p { max-width: 235px; margin: 0; font-size: 13px; }
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
+    .filter {
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .filter:hover, .filter.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .product { min-width: 0; }
+    .product[hidden] { display: none; }
+    .product-image {
+      aspect-ratio: 3 / 4;
+      background-color: var(--mist);
+      overflow: hidden;
+      position: relative;
+    }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .product:hover .product-image img { transform: scale(1.04); }
+    .quick-add {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      border: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .quick-add:hover { background: var(--rust); color: var(--white); }
+    .product-info { display: flex; justify-content: space-between; gap: 12px; padding: 12px 2px 0; font-size: 13px; }
+    .product-name { margin: 0; }
+    .product-type { margin: 3px 0 0; color: rgba(24, 32, 29, .62); font-size: 11px; }
+    .price { margin: 0; white-space: nowrap; }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+      background: var(--sage);
+    }
+    .manifesto-image { min-height: 430px; background: url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1400&q=85') center/cover; }
+    .manifesto-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(36px, 6vw, 80px); }
+    .manifesto-copy h2 { max-width: 440px; }
+    .manifesto-copy p { max-width: 340px; margin: 0; font-size: 16px; }
+    .manifesto-copy .small { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+    .journal-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr; gap: 14px; }
+    .journal-card { border-top: 1px solid var(--line); padding-top: 14px; }
+    .journal-card:first-child { grid-row: span 2; }
+    .journal-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; margin-bottom: 14px; }
+    .journal-card:first-child img { aspect-ratio: 4 / 5; }
+    .journal-card h3 { margin: 0 0 10px; font-family: var(--serif); font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
+    .journal-card p { margin: 0; font-size: 13px; }
+    .journal-card .meta { margin-bottom: 8px; color: rgba(24, 32, 29, .58); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+
+    .newsletter { display: flex; justify-content: space-between; align-items: center; gap: 40px; padding: 70px 4vw; background: var(--rust); color: var(--white); }
+    .newsletter h2 { max-width: 520px; }
+    .signup { display: flex; min-width: min(100%, 370px); border-bottom: 1px solid rgba(255,255,255,.7); }
+    .signup input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 12px 0; background: transparent; color: var(--white); font: inherit; }
+    .signup input::placeholder { color: rgba(255,255,255,.76); }
+    .signup button { border: 0; padding: 12px 0 12px 18px; background: transparent; color: var(--white); cursor: pointer; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+    footer { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 30px; padding: 30px 4vw 42px; font-size: 12px; }
+    footer .wordmark { font-size: 32px; }
+    footer p { max-width: 210px; margin: 0; }
+    footer ul { padding: 0; margin: 0; list-style: none; }
+    footer li + li { margin-top: 7px; }
+    footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .toast { position: fixed; right: 18px; bottom: 18px; z-index: 5; transform: translateY(80px); opacity: 0; padding: 13px 16px; background: var(--ink); color: var(--white); font-size: 13px; transition: transform .25s ease, opacity .25s ease; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 820px) {
+      nav { gap: 14px; margin-right: 18px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 540px; }
+      .hero-media { min-height: 55vh; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .manifesto { grid-template-columns: 1fr; }
+      .manifesto-image { min-height: 48vh; }
+      .journal-grid { grid-template-columns: 1fr 1fr; }
+      .journal-card:first-child { grid-row: auto; grid-column: span 2; }
+      .newsletter { align-items: flex-start; flex-direction: column; }
+      .signup { min-width: 100%; }
+    }
+    @media (max-width: 560px) {
+      .topline p:first-child { display: none; }
+      header { padding-top: 17px; padding-bottom: 15px; }
+      nav a { display: none; }
+      nav { margin-left: auto; margin-right: 12px; }
+      .hero-copy { min-height: 500px; padding-top: 45px; }
+      .hero-note { align-items: start; }
+      .circle-link { width: 72px; height: 72px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 20px; }
+      .product-grid { gap: 11px; }
+      .product-info { display: block; }
+      .price { margin-top: 5px; }
+      .journal-grid { display: block; }
+      .journal-card { margin-top: 35px; }
+      .journal-card:first-child { margin-top: 0; }
+      footer { grid-template-columns: 1fr 1fr; }
+      footer .wordmark, footer p { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>Independent objects for everyday rituals</p>
+    <a href="#journal">Read the latest journal -&gt;</a>
+  </div>
+
+  <header>
+    <a class="wordmark" href="#top" aria-label="Emboddies home">emboddies</a>
+    <nav aria-label="Primary navigation">
+      <a href="#edit">The edit</a>
+      <a href="#journal">Journal</a>
+      <a href="#about">About</a>
+    </nav>
+    <button class="cart" type="button" aria-label="Shopping bag, 0 items">Bag (0)</button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Issue 01 / A softer utility</p>
+        <h1 id="hero-title">Things that<br><em>stay</em> with you.</h1>
+        <div class="hero-note">
+          <p>A considered edit of tactile objects, useful gestures, and small reasons to slow down.</p>
+          <a class="circle-link" href="#edit">See the<br>edit</a>
+        </div>
+      </div>
+      <div class="hero-media" role="img" aria-label="Handmade ceramic objects on a table"></div>
+    </section>
+
+    <section class="section" id="edit" aria-labelledby="edit-title">
+      <div class="section-head">
+        <h2 id="edit-title">The edit</h2>
+        <p>Made by hand, found with care, and chosen for the life that happens around them.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter objects">
+        <button class="filter active" type="button" data-filter="all">All objects</button>
+        <button class="filter" type="button" data-filter="table">For the table</button>
+        <button class="filter" type="button" data-filter="room">For the room</button>
+        <button class="filter" type="button" data-filter="body">For the body</button>
+      </div>
+      <div class="product-grid">
+        <article class="product" data-category="table">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=900&q=85" alt="Stoneware cup on a linen cloth"><button class="quick-add" type="button" aria-label="Add Pebble cup to bag" data-name="Pebble cup">+</button></div>
+          <div class="product-info"><div><p class="product-name">Pebble cup</p><p class="product-type">Stoneware / Takayama</p></div><p class="price">$38</p></div>
+        </article>
+        <article class="product" data-category="room">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=900&q=85" alt="Warm linen throw draped over a chair"><button class="quick-add" type="button" aria-label="Add Field throw to bag" data-name="Field throw">+</button></div>
+          <div class="product-info"><div><p class="product-name">Field throw</p><p class="product-type">Recycled wool / Ostersund</p></div><p class="price">$164</p></div>
+        </article>
+        <article class="product" data-category="body">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=85" alt="Amber bottle of botanical oil"><button class="quick-add" type="button" aria-label="Add After rain oil to bag" data-name="After rain oil">+</button></div>
+          <div class="product-info"><div><p class="product-name">After rain oil</p><p class="product-type">Juniper + cedar / 100 ml</p></div><p class="price">$46</p></div>
+        </article>
+        <article class="product" data-category="table">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1572119865084-43c285814d63?auto=format&fit=crop&w=900&q=85" alt="Minimal wood serving board on a table"><button class="quick-add" type="button" aria-label="Add Grain board to bag" data-name="Grain board">+</button></div>
+          <div class="product-info"><div><p class="product-name">Grain board</p><p class="product-type">Walnut / Portland</p></div><p class="price">$72</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" id="about" aria-labelledby="about-title">
+      <div class="manifesto-image" role="img" aria-label="Quiet sunlit interior with a wooden chair"></div>
+      <div class="manifesto-copy">
+        <p class="small">A note from emboddies</p>
+        <h2 id="about-title">Keep what<br>keeps you.</h2>
+        <p>We believe the objects around us can ask for attention without demanding it. Emboddies is a growing collection of well-made, well-used things for rooms, tables, and bodies.</p>
+      </div>
+    </section>
+
+    <section class="section" id="journal" aria-labelledby="journal-title">
+      <div class="section-head">
+        <h2 id="journal-title">From the journal</h2>
+        <p>Notes on materials, makers, and the rituals hidden in plain sight.</p>
+      </div>
+      <div class="journal-grid">
+        <article class="journal-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=85" alt="Sunlit shelf with ceramics and books">
+          <p class="meta">Field notes / 06.09.26</p>
+          <h3>The useful beauty of a shelf with room left on it</h3>
+          <p>A small argument for leaving a little space around the things you reach for every day.</p>
+        </article>
+        <article class="journal-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=85" alt="Flowers in a simple glass vase">
+          <p class="meta">Studio visit</p>
+          <h3>On keeping flowers ordinary</h3>
+        </article>
+        <article class="journal-card">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=85" alt="Natural linen fabric in soft light">
+          <p class="meta">Material study</p>
+          <h3>The long life of linen</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="newsletter" aria-labelledby="newsletter-title">
+      <h2 id="newsletter-title">A little note,<br>when it is ready.</h2>
+      <form class="signup" id="signup-form">
+        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+        <button type="submit">Join the list -&gt;</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div><a class="wordmark" href="#top">emboddies</a><p style="margin-top: 18px;">Objects with a point of view.<br>Made to be lived with.</p></div>
+    <div><p style="margin-bottom: 12px; color: rgba(24,32,29,.55); text-transform: uppercase; letter-spacing: .08em; font-size: 10px;">Explore</p><ul><li><a href="#edit">The edit</a></li><li><a href="#journal">Journal</a></li><li><a href="#about">Our point of view</a></li></ul></div>
+    <div><p style="margin-bottom: 12px; color: rgba(24,32,29,.55); text-transform: uppercase; letter-spacing: .08em; font-size: 10px;">Say hello</p><ul><li><a href="mailto:hello@emboddies.com">hello@emboddies.com</a></li><li><a href="#top">Instagram</a></li><li><a href="#top">Stockists</a></li></ul></div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const filterButtons = document.querySelectorAll('.filter');
+    const products = document.querySelectorAll('.product');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        products.forEach(product => { product.hidden = filter !== 'all' && product.dataset.category !== filter; });
+      });
+    });
+
+    let bagCount = 0;
+    const cart = document.querySelector('.cart');
+    const toast = document.querySelector('.toast');
+    let toastTimer;
+    document.querySelectorAll('.quick-add').forEach(button => {
+      button.addEventListener('click', () => {
+        bagCount += 1;
+        cart.textContent = `Bag (${bagCount})`;
+        cart.setAttribute('aria-label', `Shopping bag, ${bagCount} item${bagCount === 1 ? '' : 's'}`);
+        toast.textContent = `${button.dataset.name} added to your bag`;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+      });
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = event.currentTarget.querySelector('input');
+      toast.textContent = `You are on the list, ${input.value}`;
+      toast.classList.add('show');
+      input.value = '';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    });
+  </script>
+</body>
+</html>
