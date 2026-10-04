@@ -14,7 +14,7 @@ const dialog = document.querySelector('#detail-dialog');
 const content = document.querySelector('#dialog-content');
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => {
  const project = projects[button.dataset.project];
- content.innerHTML = `<div class="eyebrow">PROJECT NOTES / 精选介绍</div><h2 id="dialog-title">${project.title}</h2><p>${project.description}</p><h3>从哪里开始</h3><ol>${project.steps.map(step => `<li>${step}</li>`).join('')}</ol><p>原作者：${project.author}。本站尚未标记为团队已复现，也未提供对应在售套件。资料、许可与兼容要求请以原项目最新文档为准。</p><a class="button orange" href="${project.url}" target="_blank" rel="noopener noreferrer">查看原项目仓库 ↗</a>`;
+ content.innerHTML = `<div class="eyebrow">项目资料</div><h2 id="dialog-title">${project.title}</h2><p>${project.description}</p><h3>阅读顺序</h3><ol>${project.steps.map(step => `<li>${step}</li>`).join('')}</ol><p>原作者：${project.author}。本站提供资料入口，不销售该项目套件。许可和构建要求以原项目文档为准。</p><a class="button orange" href="${project.url}" target="_blank" rel="noopener noreferrer">打开官方仓库 ↗</a>`;
  dialog.showModal();
 }));
 document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
@@ -23,9 +23,5 @@ document.querySelectorAll('.filter').forEach(button => button.addEventListener('
  document.querySelectorAll('[data-category]').forEach(card => { card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter; if (!card.hidden) count += 1; });
  document.querySelector('#filter-status').textContent = `显示 ${count} 个项目`;
 }));
-document.querySelector('[data-kit-info]').addEventListener('click', () => {
- content.innerHTML = '<div class="eyebrow">KIT / 筹备中</div><h2 id="dialog-title">让动手，少一些准备工作。</h2><p>我们正在筹备配套套件。具体项目、材料清单、价格与发货时间尚未公布，目前不接受付款或预订。</p><h3>上架前，我们会明确</h3><ul><li>适配项目与版本，以及原项目许可。</li><li>包含与不包含的部件、额外需要的工具。</li><li>组装教程、测试范围与支持方式。</li><li>真实价格、库存与交付时间。</li></ul><p>现在可以先通过项目详情查看原作者资料。</p>';
- dialog.showModal();
-});
 document.querySelector('.close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target !== dialog) return; const bounds = dialog.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close(); });
