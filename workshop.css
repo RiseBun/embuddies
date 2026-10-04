@@ -8,7 +8,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offse
 .wrap{width:min(1220px,calc(100% - 72px));margin-inline:auto}
 .skip{position:absolute;top:-100px;background:white;padding:10px;z-index:10}.skip:focus{top:0}
 header{height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
-.logo{font-size:28px;font-weight:750;letter-spacing:-1.5px;white-space:nowrap}.logo span{color:var(--blue)}.logo .logo-mark{font-size:14px;vertical-align:top;letter-spacing:0;margin-left:3px}
+.logo{display:inline-flex;align-items:center;flex:none}.logo img{display:block;width:160px;height:auto}
 nav{display:flex;gap:32px;font-size:13px;font-weight:500}nav a:hover{color:var(--blue)}
 .button{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border:1px solid var(--blue);background:var(--blue);color:#fff;font-size:13px;font-weight:600;border-radius:4px;white-space:nowrap}
 .button:hover{background:#0956ca}.ghost{background:#fff;color:var(--ink);border-color:var(--line)}.ghost:hover{background:var(--soft)}.orange{background:var(--blue);border-color:var(--blue)}
