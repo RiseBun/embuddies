@@ -138,6 +138,25 @@ function makeEditorialNews(item) {
   return article;
 }
 
+function makeNewsCard(item) {
+  const isEnglish = document.documentElement.lang === 'en';
+  const title = isEnglish ? item.title_en || item.title : item.title;
+  const link = document.createElement('a');
+  link.className = 'home-news-card';
+  link.href = item.url;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  const meta = document.createElement('time');
+  meta.dateTime = item.date;
+  meta.textContent = `${item.date.replaceAll('-', '.')} · ${item.source}`;
+  const heading = document.createElement('h3');
+  heading.textContent = title;
+  const action = document.createElement('span');
+  action.textContent = isEnglish ? 'Read story ↗' : '阅读报道 ↗';
+  link.append(meta, heading, action);
+  return link;
+}
+
 function makeProjectFeature(project, index) {
   const isEnglish = document.documentElement.lang === 'en';
   const article = document.createElement('article');
@@ -181,27 +200,12 @@ async function renderEditorial() {
     ]);
     const news = await newsResponse.json();
     news.sort((first, second) => second.date.localeCompare(first.date));
-    if (newsFeature && news.length) {
-      const newsItems = news.map(makeEditorialNews);
-      const newsLoop = newsItems.map(item => {
-        const copy = item.cloneNode(true);
-        copy.setAttribute('aria-hidden', 'true');
-        copy.inert = true;
-        return copy;
-      });
-      newsFeature.classList.add('is-flowing');
-      newsFeature.replaceChildren(...newsItems, ...newsLoop);
-    }
+    if (newsFeature && news[0]) newsFeature.replaceChildren(makeEditorialNews(news[0]));
+    const newsList = document.querySelector('#news-list');
+    if (newsList) newsList.replaceChildren(...news.slice(1).map(makeNewsCard));
     if (projectFeatureGrid) {
       const projectItems = catalog.slice(0, 5).map(makeProjectFeature);
-      const projectLoop = projectItems.map(item => {
-        const copy = item.cloneNode(true);
-        copy.setAttribute('aria-hidden', 'true');
-        copy.inert = true;
-        return copy;
-      });
-      projectFeatureGrid.classList.add('is-flowing');
-      projectFeatureGrid.replaceChildren(...projectItems, ...projectLoop);
+      projectFeatureGrid.replaceChildren(...projectItems);
     }
   } catch {
     if (newsFeature) newsFeature.textContent = document.documentElement.lang === 'en' ? 'The latest story is being prepared.' : '最新资讯正在整理中。';
