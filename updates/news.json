@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-10-01",
+    "title": "Microduck 控制软件发布 0.15.1 版本",
+    "title_en": "Microduck daemon 0.15.1 released",
+    "source": "Pollen Robotics",
+    "url": "https://github.com/pollen-robotics/microduck/releases/tag/daemon-v0.15.1"
+  },
+  {
+    "date": "2026-08-30",
+    "title": "Tiny Engineer 发布首个可工作原型",
+    "title_en": "Tiny Engineer v0.1.0 released",
+    "source": "jamro",
+    "url": "https://github.com/jamro/tiny-engineer/releases/tag/v0.1.0"
+  },
+  {
+    "date": "2026-07-06",
+    "title": "Microban 发布 v1.0.0",
+    "title_en": "Microban v1.0.0 released",
+    "source": "Rhoban",
+    "url": "https://github.com/Rhoban/microban/releases/tag/v1.0.0"
+  }
+]

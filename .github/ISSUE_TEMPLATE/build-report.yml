@@ -1,0 +1,31 @@
+name: Share a build report / 分享复现记录
+description: Tell others what you built and what changed / 分享制作结果与修改
+title: "[Build] "
+labels: [build-report]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: embuddies project link / embuddies 项目链接
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Result / 制作结果
+      options:
+        - Built / 已完成
+        - Partial / 部分完成
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Hardware revision / 硬件版本
+  - type: textarea
+    id: notes
+    attributes:
+      label: Build notes / 制作记录
+      description: Include changes, tests and issues. / 说明修改、测试和遇到的问题。
+    validations:
+      required: true

@@ -1,0 +1,75 @@
+name: Submit a hardware project / 提交硬件项目
+description: Share a hardware project for editorial review / 提交硬件项目供编辑审核
+title: "[Project] "
+labels: [project-submission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Projects of every hardware category are welcome. This form does not publish your project automatically. Do not include private contact details. / 欢迎各类硬件项目。提交后须经人工审核，请勿填写私人联系方式。
+  - type: input
+    id: title
+    attributes:
+      label: Project name / 项目名称
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Creator or team / 作者或团队
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Hardware category / 硬件类型
+      options:
+        - Robotics / 机器人
+        - Desktop / 桌面设备
+        - Input devices / 输入设备
+        - Smart home / 智能家居
+        - Wearables / 可穿戴
+        - Interactive art / 交互艺术
+        - Tools and instruments / 工具与仪器
+        - Other hardware / 其他硬件
+    validations:
+      required: true
+  - type: dropdown
+    id: openness
+    attributes:
+      label: Openness / 开放程度
+      options:
+        - Open source / 开源
+        - Partly open / 部分开放
+        - License restrictions / 附带许可限制
+        - Showcase / 作品展示
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description / 项目简介
+      description: Chinese, English or both / 可用中文、英文或双语填写
+    validations:
+      required: true
+  - type: textarea
+    id: resources
+    attributes:
+      label: Source links and build resources / 原始资料与制作链接
+      description: Use HTTPS links to code, CAD, models, parts lists, guides or demos. State clearly what is not available. / 填写代码、CAD、模型、材料清单、指南或演示链接，并说明缺少的资料。
+    validations:
+      required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Project image or video / 项目图片或视频
+      description: Add a link or attach media you have permission to share. / 提供链接或附上有权分享的媒体。
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Permission / 分享授权
+      options:
+        - label: I have permission to share this content and the openness label is accurate. / 我有权分享以上内容，且开放程度标注准确。
+          required: true
