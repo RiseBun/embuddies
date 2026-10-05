@@ -94,6 +94,16 @@ const projectImageOverrides = {
   'tiny-engineer': '/assets/tiny-engineer-official.jpg'
 };
 
+const projectFilters = [
+  { id: 'all', zh: '全部', en: 'All' },
+  { id: 'documented', zh: '自制项目', en: 'Buildable' },
+  { id: 'robotics', zh: '机器人', en: 'Robotics' },
+  { id: 'home', zh: '智能家居', en: 'Smart home' },
+  { id: 'desktop', zh: '桌面设备', en: 'Desktop' },
+  { id: 'input', zh: '输入设备', en: 'Input devices' },
+  { id: 'wearable', zh: '可穿戴', en: 'Wearables' }
+];
+
 function localized(value) {
   if (typeof value === 'string') return value;
   return value?.[document.documentElement.lang === 'en' ? 'en' : 'zh'] || '';
@@ -133,34 +143,15 @@ function makeEditorialNews(item) {
   read.textContent = isEnglish ? 'Read the update ↗' : '阅读这条资讯 ↗';
   copy.append(meta, heading, summary, read);
   const article = document.createElement('article');
-  article.className = 'editorial-lead-inner';
+  article.className = 'news-feature-card';
   article.append(link, copy);
   return article;
 }
 
-function makeNewsCard(item) {
-  const isEnglish = document.documentElement.lang === 'en';
-  const title = isEnglish ? item.title_en || item.title : item.title;
-  const link = document.createElement('a');
-  link.className = 'home-news-card';
-  link.href = item.url;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
-  const meta = document.createElement('time');
-  meta.dateTime = item.date;
-  meta.textContent = `${item.date.replaceAll('-', '.')} · ${item.source}`;
-  const heading = document.createElement('h3');
-  heading.textContent = title;
-  const action = document.createElement('span');
-  action.textContent = isEnglish ? 'Read story ↗' : '阅读报道 ↗';
-  link.append(meta, heading, action);
-  return link;
-}
-
-function makeProjectFeature(project, index) {
+function makeProjectFeature(project) {
   const isEnglish = document.documentElement.lang === 'en';
   const article = document.createElement('article');
-  article.className = `project-feature-card${index === 0 ? ' is-lead' : ''}`;
+  article.className = 'project-feature-card';
   const link = document.createElement('a');
   link.href = `/projects/detail/?id=${encodeURIComponent(project.id)}${isEnglish ? '&lang=en' : ''}`;
   const image = document.createElement('img');
@@ -200,17 +191,98 @@ async function renderEditorial() {
     ]);
     const news = await newsResponse.json();
     news.sort((first, second) => second.date.localeCompare(first.date));
-    if (newsFeature && news[0]) newsFeature.replaceChildren(makeEditorialNews(news[0]));
-    const newsList = document.querySelector('#news-list');
-    if (newsList) newsList.replaceChildren(...news.slice(1).map(makeNewsCard));
+    if (newsFeature) renderShowcase(newsFeature, news, makeEditorialNews, 'news');
     if (projectFeatureGrid) {
-      const projectItems = catalog.slice(0, 5).map(makeProjectFeature);
-      projectFeatureGrid.replaceChildren(...projectItems);
+      renderProjectCollection(projectFeatureGrid, catalog);
     }
   } catch {
     if (newsFeature) newsFeature.textContent = document.documentElement.lang === 'en' ? 'The latest story is being prepared.' : '最新资讯正在整理中。';
     if (projectFeatureGrid) projectFeatureGrid.textContent = document.documentElement.lang === 'en' ? 'Projects are being prepared.' : '项目内容正在整理中。';
   }
+}
+
+function renderProjectCollection(host, projects) {
+  const filters = document.querySelector('#project-filters');
+  const isEnglish = document.documentElement.lang === 'en';
+  let selected = 'all';
+  const render = () => {
+    const visible = selected === 'all'
+      ? projects
+      : selected === 'documented'
+        ? projects.filter(project => project.readiness === 'documented')
+        : projects.filter(project => project.category === selected);
+    host.replaceChildren(...visible.map(makeProjectFeature));
+    filters?.querySelectorAll('button').forEach(button => {
+      button.setAttribute('aria-selected', button.dataset.filter === selected ? 'true' : 'false');
+    });
+  };
+  if (filters) {
+    filters.replaceChildren(...projectFilters.map(filter => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'project-filter-tab';
+      button.dataset.filter = filter.id;
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-selected', filter.id === selected ? 'true' : 'false');
+      button.textContent = filter[isEnglish ? 'en' : 'zh'];
+      button.addEventListener('click', () => { selected = filter.id; render(); });
+      return button;
+    }));
+  }
+  render();
+}
+
+function renderShowcase(host, items, makeCard, type) {
+  const pageSize = type === 'news' ? 3 : 7;
+  const pageCount = type === 'news' ? Math.max(1, items.length) : Math.max(1, Math.ceil(items.length / pageSize));
+  let page = 0;
+  const showcase = document.createElement('div');
+  showcase.className = `showcase showcase-${type}`;
+  const content = document.createElement('div');
+  content.className = 'showcase-content';
+  const main = document.createElement('div');
+  main.className = 'showcase-main';
+  const side = document.createElement('div');
+  side.className = 'showcase-side';
+  const controls = document.createElement('div');
+  controls.className = 'showcase-controls';
+  const previous = document.createElement('button');
+  previous.className = 'showcase-arrow';
+  previous.type = 'button';
+  previous.setAttribute('aria-label', '上一页');
+  previous.textContent = '←';
+  const next = document.createElement('button');
+  next.className = 'showcase-arrow';
+  next.type = 'button';
+  next.setAttribute('aria-label', '下一页');
+  next.textContent = '→';
+  const dots = document.createElement('div');
+  dots.className = 'showcase-dots';
+  const update = () => {
+    const current = type === 'news'
+      ? [0, 1, 2].map(offset => items[(page + offset) % items.length]).filter(Boolean)
+      : items.slice(page * pageSize, (page + 1) * pageSize);
+    main.replaceChildren(current[0] ? makeCard(current[0], 0) : document.createElement('div'));
+    side.replaceChildren(...current.slice(1).map((item, index) => makeCard(item, index + 1)));
+    [...dots.children].forEach((dot, index) => dot.setAttribute('aria-current', index === page ? 'page' : 'false'));
+    previous.disabled = pageCount < 2 || (type !== 'news' && page === 0);
+    next.disabled = pageCount < 2 || (type !== 'news' && page === pageCount - 1);
+  };
+  previous.addEventListener('click', () => { if (page > 0) { page -= 1; update(); } });
+  next.addEventListener('click', () => { if (page < pageCount - 1) { page += 1; update(); } });
+  for (let index = 0; index < pageCount; index += 1) {
+    const dot = document.createElement('button');
+    dot.className = 'showcase-dot';
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `第 ${index + 1} 页`);
+    dot.addEventListener('click', () => { page = index; update(); });
+    dots.append(dot);
+  }
+  controls.append(previous, dots, next);
+  content.append(main, side);
+  showcase.append(content, controls);
+  host.replaceChildren(showcase);
+  update();
 }
 
 renderEditorial();
