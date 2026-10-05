@@ -122,26 +122,20 @@ function makeEditorialNews(item) {
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   const image = document.createElement('img');
-  image.src = item.title.includes('Tiny Engineer') ? '/assets/tiny-engineer-official.jpg' : item.title.includes('Microban') ? '/assets/project-microban.svg' : '/assets/project-microduck.svg';
+  image.src = item.image || (item.title.includes('Tiny Engineer') ? '/assets/tiny-engineer-official.jpg' : item.title.includes('Microban') ? '/assets/project-microban.svg' : '/assets/project-microduck.svg');
   image.alt = title;
   image.loading = 'eager';
   link.append(image);
 
   const copy = document.createElement('div');
   copy.className = 'editorial-lead-copy';
-  const meta = document.createElement('div');
+  const meta = document.createElement('time');
   meta.className = 'editorial-meta';
-  meta.textContent = `${item.source} · ${item.date.replaceAll('-', '.')}`;
+  meta.dateTime = item.date;
+  meta.textContent = item.date.replaceAll('-', '.');
   const heading = document.createElement('h3');
   heading.textContent = title;
-  const summary = document.createElement('p');
-  summary.textContent = isEnglish
-    ? 'A fresh release from the maker community. Open the source project and follow the work as it develops.'
-    : '来自创作者社区的新发布。打开原项目，跟进硬件、软件与制作资料的最新进展。';
-  const read = document.createElement('span');
-  read.className = 'editorial-link';
-  read.textContent = isEnglish ? 'Read the update ↗' : '阅读这条资讯 ↗';
-  copy.append(meta, heading, summary, read);
+  copy.append(meta, heading);
   const article = document.createElement('article');
   article.className = 'news-feature-card';
   article.append(link, copy);
@@ -233,8 +227,9 @@ function renderProjectCollection(host, projects) {
 }
 
 function renderShowcase(host, items, makeCard, type) {
-  const pageSize = type === 'news' ? 3 : 7;
-  const pageCount = type === 'news' ? Math.max(1, items.length) : Math.max(1, Math.ceil(items.length / pageSize));
+  const pageSize = 7;
+  const pageCount = Math.max(1, Math.ceil(items.length / pageSize));
+  const isEnglish = document.documentElement.lang === 'en';
   let page = 0;
   const showcase = document.createElement('div');
   showcase.className = `showcase showcase-${type}`;
@@ -249,24 +244,22 @@ function renderShowcase(host, items, makeCard, type) {
   const previous = document.createElement('button');
   previous.className = 'showcase-arrow';
   previous.type = 'button';
-  previous.setAttribute('aria-label', '上一页');
+  previous.setAttribute('aria-label', isEnglish ? 'Previous page' : '上一页');
   previous.textContent = '←';
   const next = document.createElement('button');
   next.className = 'showcase-arrow';
   next.type = 'button';
-  next.setAttribute('aria-label', '下一页');
+  next.setAttribute('aria-label', isEnglish ? 'Next page' : '下一页');
   next.textContent = '→';
   const dots = document.createElement('div');
   dots.className = 'showcase-dots';
   const update = () => {
-    const current = type === 'news'
-      ? [0, 1, 2].map(offset => items[(page + offset) % items.length]).filter(Boolean)
-      : items.slice(page * pageSize, (page + 1) * pageSize);
+    const current = items.slice(page * pageSize, (page + 1) * pageSize);
     main.replaceChildren(current[0] ? makeCard(current[0], 0) : document.createElement('div'));
     side.replaceChildren(...current.slice(1).map((item, index) => makeCard(item, index + 1)));
     [...dots.children].forEach((dot, index) => dot.setAttribute('aria-current', index === page ? 'page' : 'false'));
-    previous.disabled = pageCount < 2 || (type !== 'news' && page === 0);
-    next.disabled = pageCount < 2 || (type !== 'news' && page === pageCount - 1);
+    previous.disabled = pageCount < 2 || page === 0;
+    next.disabled = pageCount < 2 || page === pageCount - 1;
   };
   previous.addEventListener('click', () => { if (page > 0) { page -= 1; update(); } });
   next.addEventListener('click', () => { if (page < pageCount - 1) { page += 1; update(); } });
@@ -274,7 +267,7 @@ function renderShowcase(host, items, makeCard, type) {
     const dot = document.createElement('button');
     dot.className = 'showcase-dot';
     dot.type = 'button';
-    dot.setAttribute('aria-label', `第 ${index + 1} 页`);
+    dot.setAttribute('aria-label', isEnglish ? `Page ${index + 1}` : `第 ${index + 1} 页`);
     dot.addEventListener('click', () => { page = index; update(); });
     dots.append(dot);
   }

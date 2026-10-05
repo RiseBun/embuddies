@@ -133,7 +133,7 @@ h3 { margin: 0; font-size: 23px; line-height: 1.4; }
 @keyframes editorial-flow-news { to { transform: translateX(calc(-50% - 11px)); } }
 @keyframes editorial-flow-projects { to { transform: translateX(calc(-50% - 11px)); } }
 .project-feature-card.is-lead .project-feature-body h3 { font-size: 31px; }
-.home-news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.home-news-grid { display: block; }
 .news-feature-card { min-width: 0; background: var(--soft); }
 .news-feature-card .editorial-lead-media { display: block; min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; }
 .news-feature-card .editorial-lead-copy { display: block; padding: 23px 24px 27px; }
