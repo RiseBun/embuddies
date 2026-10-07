@@ -94,7 +94,7 @@
     "image": "https://map-data.airgradient.com/blog-images/blog/0e07677c-1aa0-42f4-afcc-9db959c1b215/inline/pro_v4.2-mm4hrf2q-tq14dbok-w800.webp",
     "imageType": "photo",
     "materials": [],
-    "resources": [{"type": "code", "url": "https://github.com/airgradienthq/arduino"}, {"type": "guide", "url": "https://www.airgradient.com/diy/"}],
+    "resources": [{"type": "code", "url": "https://github.com/airgradienthq/arduino"}, {"type": "guide", "url": "https://www.airgradient.com/documentation/kb/kb-diy-the-airgradient-builds-overview"}],
     "buildNotes": {"zh": "传感器与电路板版本会影响用料；按官方 DIY 页面核对。", "en": "Sensor and board revisions affect parts; check the official DIY page."}
   },
   {

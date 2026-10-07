@@ -1,0 +1,107 @@
+{
+  "sources": [
+    {
+      "id": "microduck-releases",
+      "name": "Microduck",
+      "kind": "github-releases",
+      "url": "https://github.com/pollen-robotics/microduck/releases",
+      "projectId": "microduck",
+      "trustLevel": "official",
+      "enabled": true,
+      "image": "/assets/project-microduck.svg"
+    },
+    {
+      "id": "microban-releases",
+      "name": "Microban",
+      "kind": "github-releases",
+      "url": "https://github.com/Rhoban/microban/releases",
+      "projectId": "microban",
+      "trustLevel": "official",
+      "enabled": true,
+      "image": "/assets/project-microban.svg"
+    },
+    {
+      "id": "tiny-engineer-releases",
+      "name": "Tiny Engineer",
+      "kind": "github-releases",
+      "url": "https://github.com/jamro/tiny-engineer/releases",
+      "projectId": "tiny-engineer",
+      "trustLevel": "official",
+      "enabled": true,
+      "image": "/assets/tiny-engineer-official.jpg"
+    },
+    {
+      "id": "corne-keyboard",
+      "name": "Corne Keyboard",
+      "kind": "github-repo",
+      "url": "https://github.com/foostan/crkbd",
+      "projectId": "corne-keyboard",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "yampad",
+      "name": "YamPAD",
+      "kind": "github-repo",
+      "url": "https://github.com/mattdibi/yampad",
+      "projectId": "yampad",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "open-smartwatch-hardware",
+      "name": "Open-Smartwatch",
+      "kind": "github-repo",
+      "url": "https://github.com/Open-Smartwatch/open-smartwatch-light",
+      "projectId": "open-smartwatch",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "open-smartwatch-guide",
+      "name": "Open-Smartwatch documentation",
+      "kind": "official-page",
+      "url": "https://open-smartwatch.github.io/",
+      "projectId": "open-smartwatch",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "airgradient-diy",
+      "name": "AirGradient DIY",
+      "kind": "official-page",
+      "url": "https://www.airgradient.com/documentation/kb/kb-diy-the-airgradient-builds-overview",
+      "projectId": "airgradient-diy",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "airgradient-code",
+      "name": "AirGradient Arduino",
+      "kind": "github-repo",
+      "url": "https://github.com/airgradienthq/arduino",
+      "projectId": "airgradient-diy",
+      "trustLevel": "official",
+      "enabled": true
+    },
+    {
+      "id": "duckypad",
+      "name": "duckyPad",
+      "kind": "github-repo",
+      "url": "https://github.com/dekuNukem/duckyPad",
+      "projectId": "duckypad",
+      "trustLevel": "official",
+      "enabled": true
+    }
+  ],
+  "discovery": {
+    "enabled": true,
+    "maximumCandidatesPerRun": 12,
+    "minimumStars": 10,
+    "queries": [
+      "topic:open-hardware archived:false fork:false",
+      "topic:robotics topic:hardware archived:false fork:false",
+      "topic:kicad archived:false fork:false"
+    ]
+  }
+}

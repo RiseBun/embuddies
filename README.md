@@ -22,6 +22,20 @@ Edit [`projects/catalog.json`](projects/catalog.json). Keep one entry per verifi
 
 For every new entry, check the original author's attribution and media permission, current hardware revision, resource links, licensing and whether parts can be sourced. Keep a short internal record of the review. Project images provided by authors must be licensed or uploaded by the rights holder.
 
+## Automated content maintenance
+
+The `Content refresh` GitHub Actions workflow runs at 08:00 and 20:00 Asia/Shanghai time. It checks the official source registry in [`automation/sources.json`](automation/sources.json), collects releases and feeds, and performs limited GitHub discovery. It never publishes a new project directly: all changes are pushed to the fixed `automation/content-refresh` branch and require pull-request review.
+
+Run a local report without changing tracked content:
+
+```sh
+node automation/update-content.mjs --dry-run --report-markdown content-report.md
+```
+
+Run the deterministic content tests with `pnpm test`. Browser smoke tests use `pnpm test:ui`. The active news feed keeps the newest 100 entries; older entries are moved into yearly files under `updates/archive/`. Candidate projects remain internal in `automation/candidates/projects.json` until attribution, licensing, media rights and build documentation have been reviewed manually.
+
+Scheduled runs use only the repository `GITHUB_TOKEN`. In repository Actions settings, allow workflows to create pull requests. Manual workflow runs default to dry-run mode and upload the JSON and Markdown reports as artifacts.
+
 ## Partner-kit pilot
 
 There are no kits for sale on the site. A verified partner kit is entered in `public.partner_kits` by a database administrator only after compatibility, revision, delivery regions, price and partner support have been checked. `active = false` keeps it private until launch. The partner handles payment, shipping and after-sales support. Do not copy partner offers into author-submitted project data.

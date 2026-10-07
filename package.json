@@ -1,0 +1,15 @@
+{
+  "name": "embuddies",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "test": "node --test automation/update-content.test.mjs",
+    "test:ui": "playwright test",
+    "content:refresh": "node automation/update-content.mjs",
+    "content:dry-run": "node automation/update-content.mjs --dry-run"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

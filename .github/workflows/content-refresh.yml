@@ -1,0 +1,92 @@
+name: Content refresh
+
+on:
+  schedule:
+    - cron: '0 0,12 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Generate a report without changing repository content
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: embuddies-content-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Test content automation
+        run: node --test automation/update-content.test.mjs
+
+      - name: Collect content
+        id: collect
+        shell: bash
+        run: |
+          report_json="$RUNNER_TEMP/content-report.json"
+          report_markdown="$RUNNER_TEMP/content-report.md"
+          arguments=(--report-json "$report_json" --report-markdown "$report_markdown")
+          if [[ "$DRY_RUN" == "true" ]]; then
+            arguments+=(--dry-run)
+          fi
+          node automation/update-content.mjs "${arguments[@]}"
+          cat "$report_markdown" >> "$GITHUB_STEP_SUMMARY"
+          echo "report_json=$report_json" >> "$GITHUB_OUTPUT"
+          echo "report_markdown=$report_markdown" >> "$GITHUB_OUTPUT"
+
+      - name: Upload dry-run report
+        if: env.DRY_RUN == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: embuddies-content-report
+          path: |
+            ${{ steps.collect.outputs.report_json }}
+            ${{ steps.collect.outputs.report_markdown }}
+
+      - name: Detect tracked content changes
+        if: env.DRY_RUN != 'true'
+        id: changes
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain -- updates/news.json updates/archive automation/candidates/projects.json)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update review pull request
+        if: env.DRY_RUN != 'true' && steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          branch="automation/content-refresh"
+          git config user.name "embuddies content bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$branch"
+          git add updates/news.json automation/candidates/projects.json
+          if [[ -d updates/archive ]]; then git add updates/archive; fi
+          git commit -m "Refresh verified content candidates"
+          git push origin "HEAD:refs/heads/$branch" --force
+
+          pull_request=$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number')
+          if [[ -n "$pull_request" ]]; then
+            gh pr edit "$pull_request" --title "Review automated content refresh" --body-file "${{ steps.collect.outputs.report_markdown }}"
+          else
+            gh pr create --base main --head "$branch" --title "Review automated content refresh" --body-file "${{ steps.collect.outputs.report_markdown }}"
+          fi
+

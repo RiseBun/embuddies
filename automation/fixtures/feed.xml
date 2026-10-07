@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Example hardware news</title>
+    <item>
+      <title><![CDATA[New <b>controller</b> board]]></title>
+      <link>https://example.com/releases/controller?utm_campaign=test</link>
+      <pubDate>Tue, 06 Oct 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Future announcement</title>
+      <link>https://example.com/releases/future</link>
+      <pubDate>Thu, 08 Oct 2026 08:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
+
