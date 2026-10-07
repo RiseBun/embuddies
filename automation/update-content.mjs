@@ -88,6 +88,7 @@ export function parseFeed(xml, source, now = new Date()) {
       title_en: originalTitle,
       source: source.name,
       image: source.image || '',
+      imageSource: source.imageSource || source.url,
       url
     });
   }
@@ -113,6 +114,7 @@ export function releaseNews(releases, source, now = new Date()) {
       title_en: `${source.name} released ${version}${release.prerelease ? ' prerelease' : ''}`,
       source: source.name,
       image: source.image || '',
+      imageSource: source.imageSource || source.url,
       url
     });
   }
@@ -120,10 +122,12 @@ export function releaseNews(releases, source, now = new Date()) {
 }
 
 function validNewsItem(item, now) {
-  if (!item || !plainText(item.title) || !plainText(item.title_en) || !plainText(item.source)) return false;
+  if (!item || !plainText(item.title) || !plainText(item.title_en) || !plainText(item.source) || !String(item.image || '').trim() || !String(item.imageSource || '').trim()) return false;
   if (!safeDate(item.date, now)) return false;
+  if (/^\/assets\/(project-|kit-parts)/.test(String(item.image))) return false;
   try {
     normalizeUrl(item.url);
+    normalizeUrl(item.imageSource);
     return true;
   } catch {
     return false;
@@ -140,6 +144,7 @@ export function mergeNews(existing, additions, now = new Date(), activeLimit = 1
       title_en: plainText(raw.title_en, 180),
       source: plainText(raw.source, 100),
       image: String(raw.image || '').trim(),
+      imageSource: String(raw.imageSource || '').trim(),
       url: normalizeUrl(raw.url)
     };
     if (!unique.has(item.url)) unique.set(item.url, item);
@@ -149,14 +154,19 @@ export function mergeNews(existing, additions, now = new Date(), activeLimit = 1
 }
 
 export function inspectRepositoryTree(paths) {
-  const normalized = (paths || []).map(value => String(value).toLowerCase());
-  const hardwarePaths = normalized.filter(value => /(^|\/)(hardware|cad|pcb|mechanical)(\/|$)|\.(kicad_pcb|kicad_sch|step|stp|stl|dxf|f3d)$/.test(value));
-  const bomPaths = normalized.filter(value => /(^|\/)(bom|bill[-_ ]?of[-_ ]?materials|shopping|parts)(\.|\/|$)/.test(value));
-  const guidePaths = normalized.filter(value => /(^|\/)(docs?|guide|build|assembly|getting[-_ ]?started)(\.|\/|$)|(^|\/)readme\.md$/.test(value));
+  const entries = (paths || []).map(value => ({ original: String(value), normalized: String(value).toLowerCase() }));
+  const matchingPaths = pattern => entries.filter(entry => pattern.test(entry.normalized)).map(entry => entry.original);
+  const hardwarePaths = matchingPaths(/(^|\/)(hardware|cad|pcb|mechanical)(\/|$)|\.(kicad_pcb|kicad_sch|step|stp|stl|dxf|f3d)$/);
+  const bomPaths = matchingPaths(/(^|\/)(bom|bill[-_ ]?of[-_ ]?materials|shopping|parts)(\.|\/|$)/);
+  const guidePaths = matchingPaths(/(^|\/)(docs?|guide|build|assembly|getting[-_ ]?started)(\.|\/|$)|(^|\/)readme\.md$/);
+  const imagePaths = entries
+    .filter(entry => /\.(png|jpe?g|webp)$/i.test(entry.normalized) && !/(badge|icon|logo|avatar|qr|schematic|diagram)/i.test(entry.normalized))
+    .map(entry => entry.original);
   return {
     hardwareDocs: hardwarePaths.length > 0,
     bom: bomPaths.length > 0,
     buildGuide: guidePaths.length > 0,
+    imagePath: imagePaths.sort((first, second) => imageScore(second) - imageScore(first))[0] || '',
     evidence: {
       hardware: hardwarePaths.slice(0, 3),
       bom: bomPaths.slice(0, 3),
@@ -165,11 +175,22 @@ export function inspectRepositoryTree(paths) {
   };
 }
 
+function imageScore(value) {
+  let score = 0;
+  if (/(hero|cover|title|overview|photo|render|demo|hardware|assembly)/i.test(value)) score += 10;
+  if (/(assets?|images?|media|docs?)/i.test(value)) score += 4;
+  if (/\.(jpe?g|webp)$/i.test(value)) score += 2;
+  return score;
+}
+
 function candidateFromRepository(repository, treeInspection, discoveredAt) {
   const missing = [];
   if (!treeInspection.bom) missing.push('bom');
   if (!treeInspection.buildGuide) missing.push('buildGuide');
-  missing.push('imageSource');
+  if (!treeInspection.imagePath) missing.push('imageSource');
+  const imageSource = treeInspection.imagePath
+    ? `https://raw.githubusercontent.com/${repository.full_name}/${repository.default_branch}/${treeInspection.imagePath.split('/').map(encodeURIComponent).join('/')}`
+    : '';
   return {
     id: repository.full_name.toLowerCase(),
     name: plainText(repository.name, 100),
@@ -180,10 +201,11 @@ function candidateFromRepository(repository, treeInspection, discoveredAt) {
     lastActivity: safeDate(repository.pushed_at, new Date('9999-12-31T00:00:00Z')),
     stars: Number(repository.stargazers_count || 0),
     topics: (repository.topics || []).map(topic => plainText(topic, 50)).filter(Boolean).slice(0, 12),
+    image: imageSource,
+    imageSource: imageSource ? `https://github.com/${repository.full_name}` : '',
     hardwareDocs: treeInspection.hardwareDocs,
     bom: treeInspection.bom,
     buildGuide: treeInspection.buildGuide,
-    imageSource: '',
     missing,
     evidence: treeInspection.evidence,
     discoveredAt

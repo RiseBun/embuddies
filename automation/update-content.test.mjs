@@ -41,7 +41,8 @@ test('deduplicates news and separates overflow for archival', () => {
     title: `资讯 ${index}`,
     title_en: `News ${index}`,
     source: 'Fixture',
-    image: '',
+    image: 'https://example.com/images/project.jpg',
+    imageSource: 'https://example.com/project',
     url: `https://example.com/news/${index}`
   }));
   entries.push({ ...entries[0] });
@@ -55,12 +56,24 @@ test('detects hardware, BOM and guide files in repository trees', () => {
   const inspection = inspectRepositoryTree([
     'hardware/controller.kicad_pcb',
     'docs/BOM.csv',
-    'docs/build-guide.md'
+    'docs/build-guide.md',
+    'assets/images/hardware-photo.jpg'
   ]);
   assert.deepEqual(
     { hardwareDocs: inspection.hardwareDocs, bom: inspection.bom, buildGuide: inspection.buildGuide },
     { hardwareDocs: true, bom: true, buildGuide: true }
   );
+  assert.equal(inspection.imagePath, 'assets/images/hardware-photo.jpg');
+});
+
+test('published catalog and news never use embuddies placeholder artwork', async () => {
+  const catalog = JSON.parse(await readFile(new URL('../projects/catalog.json', import.meta.url), 'utf8'));
+  const news = JSON.parse(await readFile(new URL('../updates/news.json', import.meta.url), 'utf8'));
+  for (const item of [...catalog, ...news]) {
+    assert.ok(item.image, `${item.title || item.id} is missing an image`);
+    assert.ok(item.imageSource, `${item.title || item.id} is missing an image source`);
+    assert.doesNotMatch(item.image, /^\/assets\/(project-|kit-parts)/);
+  }
 });
 
 test('full update is idempotent and isolates failed sources', async () => {
@@ -72,7 +85,7 @@ test('full update is idempotent and isolates failed sources', async () => {
   ]);
   await writeFile(path.join(root, 'automation', 'sources.json'), JSON.stringify({
     sources: [
-      { id: 'feed', name: 'Example', kind: 'rss', url: 'https://example.com/feed.xml', projectId: 'example', trustLevel: 'official', enabled: true },
+      { id: 'feed', name: 'Example', kind: 'rss', url: 'https://example.com/feed.xml', projectId: 'example', trustLevel: 'official', enabled: true, image: 'https://example.com/images/project.jpg', imageSource: 'https://example.com/project' },
       { id: 'broken', name: 'Broken', kind: 'official-page', url: 'https://example.com/broken', projectId: 'broken', trustLevel: 'official', enabled: true }
     ],
     discovery: { enabled: false }
@@ -104,7 +117,7 @@ test('does not restore an archived URL to the active news feed', async () => {
     mkdir(path.join(root, 'projects'), { recursive: true })
   ]);
   await writeFile(path.join(root, 'automation', 'sources.json'), JSON.stringify({
-    sources: [{ id: 'feed', name: 'Example', kind: 'rss', url: 'https://example.com/feed.xml', projectId: 'example', trustLevel: 'official', enabled: true }],
+    sources: [{ id: 'feed', name: 'Example', kind: 'rss', url: 'https://example.com/feed.xml', projectId: 'example', trustLevel: 'official', enabled: true, image: 'https://example.com/images/project.jpg', imageSource: 'https://example.com/project' }],
     discovery: { enabled: false }
   }));
   await writeFile(path.join(root, 'automation', 'candidates', 'projects.json'), '[]\n');

@@ -88,12 +88,6 @@ async function renderProjects() {
 
 renderProjects();
 
-const projectImageOverrides = {
-  'microduck': '/assets/project-microduck.svg',
-  'microban': '/assets/project-microban.svg',
-  'tiny-engineer': '/assets/tiny-engineer-official.jpg'
-};
-
 const projectFilters = [
   { id: 'all', zh: '全部', en: 'All' },
   { id: 'documented', zh: '自制项目', en: 'Buildable' },
@@ -109,10 +103,6 @@ function localized(value) {
   return value?.[document.documentElement.lang === 'en' ? 'en' : 'zh'] || '';
 }
 
-function imageForProject(project) {
-  return projectImageOverrides[project.id] || project.image;
-}
-
 function makeEditorialNews(item) {
   const isEnglish = document.documentElement.lang === 'en';
   const title = isEnglish ? item.title_en || item.title : item.title;
@@ -122,9 +112,13 @@ function makeEditorialNews(item) {
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   const image = document.createElement('img');
-  image.src = item.image || (item.title.includes('Tiny Engineer') ? '/assets/tiny-engineer-official.jpg' : item.title.includes('Microban') ? '/assets/project-microban.svg' : '/assets/project-microduck.svg');
+  image.src = item.image;
   image.alt = title;
   image.loading = 'eager';
+  image.addEventListener('error', () => {
+    image.remove();
+    link.classList.add('without-image');
+  }, { once: true });
   link.append(image);
 
   const copy = document.createElement('div');
@@ -149,13 +143,10 @@ function makeProjectFeature(project) {
   const link = document.createElement('a');
   link.href = `/projects/detail/?id=${encodeURIComponent(project.id)}${isEnglish ? '&lang=en' : ''}`;
   const image = document.createElement('img');
-  image.src = imageForProject(project);
+  image.src = project.image;
   image.alt = project.title;
   image.loading = 'eager';
-  image.addEventListener('error', () => {
-    if (image.src.endsWith('/assets/tiny-engineer-assembly.jpg')) return;
-    image.src = '/assets/tiny-engineer-assembly.jpg';
-  }, { once: true });
+  image.addEventListener('error', () => image.remove(), { once: true });
   link.append(image);
   const body = document.createElement('div');
   body.className = 'project-feature-body';

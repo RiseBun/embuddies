@@ -22,6 +22,8 @@ Edit [`projects/catalog.json`](projects/catalog.json). Keep one entry per verifi
 
 For every new entry, check the original author's attribution and media permission, current hardware revision, resource links, licensing and whether parts can be sourced. Keep a short internal record of the review. Project images provided by authors must be licensed or uploaded by the rights holder.
 
+Every published project and news item must use an image traceable to the original project, author website, official video or original reporting. Author-provided photographs, CAD views and official renderings are acceptable. Embuddies-generated placeholder artwork is not used for published project content. Store the provenance URL in `imageSource`; if no suitable image is available, keep the project as an unpublished candidate.
+
 ## Automated content maintenance
 
 The `Content refresh` GitHub Actions workflow runs at 08:00 and 20:00 Asia/Shanghai time. It checks the official source registry in [`automation/sources.json`](automation/sources.json), collects releases and feeds, and performs limited GitHub discovery. It never publishes a new project directly: all changes are pushed to the fixed `automation/content-refresh` branch and require pull-request review.

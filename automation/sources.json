@@ -8,7 +8,8 @@
       "projectId": "microduck",
       "trustLevel": "official",
       "enabled": true,
-      "image": "/assets/project-microduck.svg"
+      "image": "https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969",
+      "imageSource": "https://github.com/pollen-robotics/microduck"
     },
     {
       "id": "microban-releases",
@@ -18,7 +19,8 @@
       "projectId": "microban",
       "trustLevel": "official",
       "enabled": true,
-      "image": "/assets/project-microban.svg"
+      "image": "https://i.ytimg.com/vi/1pnFrT_jfXQ/hqdefault.jpg",
+      "imageSource": "https://www.youtube.com/watch?v=1pnFrT_jfXQ"
     },
     {
       "id": "tiny-engineer-releases",
@@ -28,7 +30,8 @@
       "projectId": "tiny-engineer",
       "trustLevel": "official",
       "enabled": true,
-      "image": "/assets/tiny-engineer-official.jpg"
+      "image": "/assets/tiny-engineer-official.jpg",
+      "imageSource": "https://github.com/jamro/tiny-engineer"
     },
     {
       "id": "corne-keyboard",
