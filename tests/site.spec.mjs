@@ -21,6 +21,19 @@ test('project catalog can search the curated directory', async ({ page }) => {
   await expect(page.getByText('Microduck', { exact: true })).toBeVisible();
 });
 
+test('public pages share the same sticky navigation', async ({ page }) => {
+  const routes = ['/', '/projects/', '/updates/', '/kits/', '/hackathon/', '/community/', '/about/', '/en/', '/en/about/'];
+  const expectedChinese = ['首页', '硬件项目', '最新资讯', '套件', '黑客松', '社区', '发布项目', '关于我们'];
+  const expectedEnglish = ['Home', 'Projects', 'News', 'Kits', 'Hackathon', 'Community', 'Submit', 'About'];
+  for (const route of routes) {
+    await page.goto(route);
+    const navigation = page.locator('header nav a');
+    await expect(navigation).toHaveCount(8);
+    await expect(navigation).toHaveText(route.startsWith('/en/') ? expectedEnglish : expectedChinese);
+    await expect(page.locator('header')).toHaveCSS('position', 'sticky');
+  }
+});
+
 test('mobile pages do not overflow horizontally', async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith('mobile'));
   for (const route of ['/', '/en/', '/updates/', '/projects/']) {

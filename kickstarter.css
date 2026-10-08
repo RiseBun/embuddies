@@ -99,7 +99,8 @@ footer a:last-child { color: #555b57; font-size: 12px; }
 @media (max-width: 760px) {
   .wrap { width: min(100% - 32px, 640px); }
   header { min-height: 64px; }
-  header nav { gap: 12px; font-size: 11px; overflow-x: auto; }
+  header nav { justify-content: flex-start; gap: 12px; font-size: 11px; overflow-x: auto; scrollbar-width: none; }
+  header nav::-webkit-scrollbar { display: none; }
   .logo img { width: 132px; height: 43px; }
   .editorial-section { padding-top: 42px; }
   .editorial-heading h2 { font-size: 25px; }

@@ -25,16 +25,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-
 .skip:focus { top: 0; }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   min-height: 82px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  background: var(--white);
   border-bottom: 1px solid var(--line);
 }
 .logo { display: inline-flex; flex: none; align-items: center; }
 .logo img { display: block; width: 180px; height: 58px; object-fit: cover; object-position: center; }
-nav { display: flex; gap: 23px; font-size: 13px; font-weight: 500; }
+nav { display: flex; flex: 1 1 auto; justify-content: flex-end; gap: 23px; min-width: 0; font-size: 13px; font-weight: 500; }
 nav a:hover, nav a[aria-current="page"] { color: var(--blue); }
 nav a[aria-current="page"] { font-weight: 700; }
 .button {

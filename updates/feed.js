@@ -113,7 +113,7 @@ function localized(value) {
   return value?.[document.documentElement.lang === 'en' ? 'en' : 'zh'] || '';
 }
 
-function makeEditorialNews(item) {
+function makeEditorialNews(item, index = 0) {
   const isEnglish = document.documentElement.lang === 'en';
   const title = isEnglish ? item.title_en || item.title : item.title;
   const link = document.createElement('a');
@@ -124,7 +124,7 @@ function makeEditorialNews(item) {
   const image = document.createElement('img');
   image.src = item.image;
   image.alt = title;
-  image.loading = 'eager';
+  image.loading = index === 0 ? 'eager' : 'lazy';
   image.addEventListener('error', () => {
     image.remove();
     link.classList.add('without-image');
@@ -158,7 +158,7 @@ function makeProjectFeature(project) {
   const image = document.createElement('img');
   image.src = project.image;
   image.alt = project.title;
-  image.loading = 'eager';
+  image.loading = 'lazy';
   image.addEventListener('error', () => image.remove(), { once: true });
   link.append(image);
   const body = document.createElement('div');

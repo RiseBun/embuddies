@@ -5,7 +5,7 @@ const links = [
 ];
 
 const header = document.querySelector('header');
-if (header) {
+if (header && !header.children.length) {
   const logo = document.createElement('a');
   logo.className = 'logo';
   logo.href = '/en/';
@@ -29,7 +29,7 @@ if (header) {
 }
 
 const footer = document.querySelector('footer');
-if (footer) {
+if (footer && !footer.children.length) {
   const home = document.createElement('a');
   home.className = 'logo';
   home.href = '/en/';
