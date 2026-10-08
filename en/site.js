@@ -1,7 +1,7 @@
 const links = [
-  ['/', 'Home'], ['/projects/?lang=en', 'Projects'],
+  ['/en/', 'Home'], ['/en/projects/', 'Projects'],
   ['/en/updates/', 'News'], ['/en/kits/', 'Kits'], ['/en/hackathon/', 'Hackathon'],
-  ['/en/community/', 'Community'], ['/submit/?lang=en', 'Submit'], ['/en/about/', 'About']
+  ['/en/community/', 'Community'], ['/en/submit/', 'Submit'], ['/en/about/', 'About']
 ];
 
 const header = document.querySelector('header');
@@ -20,7 +20,7 @@ if (header && !header.children.length) {
   nav.setAttribute('aria-label', 'Main navigation');
   for (const [href, label] of links) {
     const link = document.createElement('a');
-    link.href = href === '/' ? '/en/' : href;
+    link.href = href;
     link.textContent = label;
     if (location.pathname === link.pathname) link.setAttribute('aria-current', 'page');
     nav.append(link);

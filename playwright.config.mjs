@@ -15,7 +15,7 @@ export default defineConfig({
     reuseExistingServer: true
   },
   projects: [
-    { name: 'desktop-chromium', use: { browserName: 'chromium', ...localBrowser, viewport: { width: 1440, height: 1000 } } },
-    { name: 'mobile-chromium', use: { browserName: 'chromium', ...localBrowser, viewport: { width: 390, height: 844 } } }
+    { name: 'desktop-chromium', use: { browserName: 'chromium', ...localBrowser, locale: 'zh-CN', viewport: { width: 1440, height: 1000 } } },
+    { name: 'mobile-chromium', use: { browserName: 'chromium', ...localBrowser, locale: 'zh-CN', viewport: { width: 390, height: 844 } } }
   ]
 });

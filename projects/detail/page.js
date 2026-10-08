@@ -94,7 +94,7 @@ function render(project, imageUrl) {
   reportList.append(element('p', 'sub', lang === 'en' ? 'No build reports have been published yet.' : '暂时没有已发布的复现记录。'));
   reports.append(reportList);
   const reportLink = element('a', 'text-button', lang === 'en' ? 'Share a build report ↗' : '分享复现记录 ↗');
-  reportLink.href = `/reports/submit/?id=${encodeURIComponent(project.id)}${lang === 'en' ? '&lang=en' : ''}`;
+  reportLink.href = `${lang === 'en' ? '/en' : ''}/reports/submit/?id=${encodeURIComponent(project.id)}`;
   reports.append(reportLink);
   main.append(materials, resources, reports);
   const side = element('aside', 'detail-aside');

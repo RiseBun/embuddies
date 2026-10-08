@@ -13,6 +13,23 @@ test('English homepage renders translated sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
 });
 
+test('English locale routes render without query-string language switches', async ({ page }) => {
+  await page.goto('/en/projects/');
+  await expect(page.getByRole('heading', { name: 'All projects' })).toBeVisible();
+  await expect(page.locator('header nav a').nth(1)).toHaveAttribute('href', '/en/projects/');
+  await page.goto('/en/projects/detail/?id=microduck');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+});
+
+test('English browser locale redirects unprefixed public routes', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ locale: 'en-US' });
+  const page = await context.newPage();
+  await page.goto(`${baseURL}/projects/`);
+  await expect(page).toHaveURL(/\/en\/projects\/$/);
+  await expect(page.getByRole('heading', { name: 'All projects' })).toBeVisible();
+  await context.close();
+});
+
 test('project catalog can search the curated directory', async ({ page }) => {
   await page.goto('/projects/');
   const search = page.locator('#project-search');

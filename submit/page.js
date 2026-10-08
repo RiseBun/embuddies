@@ -193,7 +193,7 @@ async function showWorkspace() {
 document.querySelector('#auth-form').addEventListener('submit', async event => {
   event.preventDefault();
   const email = event.currentTarget.elements.email.value.trim();
-  const { error } = await client.auth.signInWithOtp({ email, options: { emailRedirectTo: `${location.origin}/submit/${lang === 'en' ? '?lang=en' : ''}` } });
+  const { error } = await client.auth.signInWithOtp({ email, options: { emailRedirectTo: `${location.origin}${lang === 'en' ? '/en' : ''}/submit/` } });
   say(error ? error.message : '登录链接已发送，请检查邮箱。', error ? error.message : 'Check your email for a sign-in link.');
 });
 

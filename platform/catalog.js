@@ -25,11 +25,12 @@ export const readinessLabels = {
 };
 
 export function language() {
+  if (location.pathname === '/en' || location.pathname.startsWith('/en/')) return 'en';
   const override = new URLSearchParams(location.search).get('lang');
   if (override === 'en' || override === 'zh') return override;
   if (document.documentElement.lang === 'en') return 'en';
   const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
-  return languages.some(value => value?.toLowerCase().startsWith('en')) ? 'en' : 'zh';
+  return String(languages[0] || '').toLowerCase().startsWith('en') ? 'en' : 'zh';
 }
 
 export function translated(value, lang = language()) {
@@ -38,7 +39,8 @@ export function translated(value, lang = language()) {
 }
 
 export function projectUrl(id, lang = language()) {
-  return `/projects/detail/?id=${encodeURIComponent(id)}${lang === 'en' ? '&lang=en' : ''}`;
+  const prefix = lang === 'en' ? '/en' : '';
+  return `${prefix}/projects/detail/?id=${encodeURIComponent(id)}`;
 }
 
 export function setLanguageLinks(lang = language()) {
@@ -48,11 +50,10 @@ export function setLanguageLinks(lang = language()) {
   });
   document.querySelectorAll('nav a, [data-local-link]').forEach(link => {
     const url = new URL(link.getAttribute('href'), location.origin);
-    if (lang === 'en') {
-      if (['/projects/', '/submit/'].includes(url.pathname)) url.searchParams.set('lang', 'en');
-      else if (url.pathname === '/') url.pathname = '/en/';
-      else url.pathname = `/en${url.pathname}`;
-    }
+    if (url.origin !== location.origin) return;
+    url.searchParams.delete('lang');
+    const unprefixed = url.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+    url.pathname = lang === 'en' ? `/en${unprefixed === '/' ? '/' : unprefixed}` : unprefixed;
     link.href = url.pathname + url.search + url.hash;
   });
 }

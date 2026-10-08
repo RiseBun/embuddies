@@ -58,7 +58,7 @@ async function showMyReports() {
 document.querySelector('#report-auth').addEventListener('submit', async event => {
   event.preventDefault();
   const email = event.currentTarget.elements.email.value.trim();
-  const url = `${location.origin}${location.pathname}?id=${encodeURIComponent(projectId)}${lang === 'en' ? '&lang=en' : ''}`;
+  const url = `${location.origin}${lang === 'en' ? '/en' : ''}/reports/submit/?id=${encodeURIComponent(projectId)}`;
   const { error } = await client.auth.signInWithOtp({ email, options: { emailRedirectTo: url } });
   status.textContent = error ? error.message : lang === 'en' ? 'Check your email for a sign-in link.' : '登录链接已发送，请检查邮箱。';
 });

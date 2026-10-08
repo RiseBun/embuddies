@@ -73,7 +73,7 @@ function render() {
     text.textContent = lang === 'en' ? 'No projects match these filters.' : '没有符合条件的项目。';
     const submit = document.createElement('a');
     submit.className = 'text-button';
-    submit.href = `/submit/${lang === 'en' ? '?lang=en' : ''}`;
+    submit.href = `${lang === 'en' ? '/en' : ''}/submit/`;
     submit.textContent = lang === 'en' ? 'Share a project ↗' : '分享一个项目 ↗';
     empty.append(text, submit);
     grid.append(empty);

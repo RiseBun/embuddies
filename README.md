@@ -44,6 +44,10 @@ To enable web research in GitHub Actions, add `BRAVE_SEARCH_API_KEY` and `DEEPSE
 
 The research cache is an internal execution store, not a public data source. Candidate status remains `needs_review` until attribution, licensing, media rights and reproducibility have been checked manually. Use `node automation/research-agent.mjs` when only the deterministic discovery stage is needed.
 
+### Language routing
+
+Public pages use locale-prefixed routes rather than mixed query-string switches. Chinese uses routes such as `/projects/` and `/updates/`; English uses `/en/projects/` and `/en/updates/`. On an unprefixed public route, the small early locale redirect checks the browser's first language and sends English browsers to the matching `/en/` route. Explicit `/en/` routes always stay English, and internal links preserve the current locale.
+
 ### Research Agent design
 
 The research system is a controlled multi-agent pipeline, not an autonomous publisher:

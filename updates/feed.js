@@ -77,7 +77,7 @@ async function renderProjects() {
     const set = track.querySelector('.ticker-set');
     const links = projects.map(project => {
       const link = document.createElement('a');
-      link.href = `/projects/detail/?id=${encodeURIComponent(project.id)}${document.documentElement.lang === 'en' ? '&lang=en' : ''}`;
+      link.href = `${document.documentElement.lang === 'en' ? '/en' : ''}/projects/detail/?id=${encodeURIComponent(project.id)}`;
       const image = document.createElement('img');
       image.src = project.image;
       image.alt = '';
@@ -154,7 +154,7 @@ function makeProjectFeature(project) {
   const article = document.createElement('article');
   article.className = 'project-feature-card';
   const link = document.createElement('a');
-  link.href = `/projects/detail/?id=${encodeURIComponent(project.id)}${isEnglish ? '&lang=en' : ''}`;
+  link.href = `${isEnglish ? '/en' : ''}/projects/detail/?id=${encodeURIComponent(project.id)}`;
   const image = document.createElement('img');
   image.src = project.image;
   image.alt = project.title;
