@@ -99,12 +99,31 @@
   ],
   "discovery": {
     "enabled": true,
+    "provider": "brave",
+    "languages": ["zh", "en"],
     "maximumCandidatesPerRun": 12,
+    "maxQueriesPerRun": 12,
+    "maxResultsPerQuery": 10,
+    "maxModelItems": 30,
     "minimumStars": 10,
+    "queryFamilies": [
+      { "zh": "开源硬件 项目 BOM 制作指南", "en": "open source hardware project BOM build guide" },
+      { "zh": "开源机器人 硬件 DIY", "en": "open source robotics hardware DIY" },
+      { "zh": "开源桌面设备 硬件 项目", "en": "open source desktop hardware project" },
+      { "zh": "开源键盘 输入设备 项目", "en": "open source keyboard input device project" },
+      { "zh": "可穿戴硬件 开源 项目", "en": "open source wearable hardware project" },
+      { "zh": "智能家居 传感器 DIY 硬件", "en": "smart home sensor DIY hardware project" }
+    ],
+    "allowedDomains": [],
+    "blockedDomains": [],
     "queries": [
       "topic:open-hardware archived:false fork:false",
       "topic:robotics topic:hardware archived:false fork:false",
       "topic:kicad archived:false fork:false"
     ]
+  },
+  "orchestration": {
+    "maxQueriesPerRun": 48,
+    "agentConcurrency": 4
   }
 }

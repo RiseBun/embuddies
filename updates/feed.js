@@ -15,6 +15,16 @@ function makeNewsLink(item) {
   link.href = item.url;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
+  const media = document.createElement('div');
+  media.className = 'news-list-media';
+  const image = document.createElement('img');
+  image.src = item.image;
+  image.alt = '';
+  image.loading = 'lazy';
+  image.addEventListener('error', () => { image.remove(); media.classList.add('without-image'); }, { once: true });
+  media.append(image);
+  const copy = document.createElement('div');
+  copy.className = 'news-list-copy';
   const date = document.createElement('time');
   date.dateTime = item.date;
   date.textContent = item.date.replaceAll('-', '.');
@@ -22,7 +32,8 @@ function makeNewsLink(item) {
   title.textContent = document.documentElement.lang === 'en' ? item.title_en || item.title : item.title;
   const source = document.createElement('small');
   source.textContent = item.source;
-  link.append(date, title, source);
+  copy.append(date, title, source);
+  link.append(media, copy);
   return link;
 }
 
@@ -90,7 +101,6 @@ renderProjects();
 
 const projectFilters = [
   { id: 'all', zh: '全部', en: 'All' },
-  { id: 'documented', zh: '自制项目', en: 'Buildable' },
   { id: 'robotics', zh: '机器人', en: 'Robotics' },
   { id: 'home', zh: '智能家居', en: 'Smart home' },
   { id: 'desktop', zh: '桌面设备', en: 'Desktop' },
@@ -127,9 +137,12 @@ function makeEditorialNews(item) {
   meta.className = 'editorial-meta';
   meta.dateTime = item.date;
   meta.textContent = item.date.replaceAll('-', '.');
+  const source = document.createElement('span');
+  source.className = 'editorial-source';
+  source.textContent = item.source;
   const heading = document.createElement('h3');
   heading.textContent = title;
-  copy.append(meta, heading);
+  copy.append(meta, source, heading);
   const article = document.createElement('article');
   article.className = 'news-feature-card';
   article.append(link, copy);
@@ -193,9 +206,7 @@ function renderProjectCollection(host, projects) {
   const render = () => {
     const visible = selected === 'all'
       ? projects
-      : selected === 'documented'
-        ? projects.filter(project => project.readiness === 'documented')
-        : projects.filter(project => project.category === selected);
+      : projects.filter(project => project.category === selected);
     host.replaceChildren(...visible.map(makeProjectFeature));
     filters?.querySelectorAll('button').forEach(button => {
       button.setAttribute('aria-selected', button.dataset.filter === selected ? 'true' : 'false');
@@ -244,11 +255,14 @@ function renderShowcase(host, items, makeCard, type) {
   next.textContent = '→';
   const dots = document.createElement('div');
   dots.className = 'showcase-dots';
+  const pageIndicator = document.createElement('span');
+  pageIndicator.className = 'showcase-page';
   const update = () => {
     const current = items.slice(page * pageSize, (page + 1) * pageSize);
     main.replaceChildren(current[0] ? makeCard(current[0], 0) : document.createElement('div'));
     side.replaceChildren(...current.slice(1).map((item, index) => makeCard(item, index + 1)));
     [...dots.children].forEach((dot, index) => dot.setAttribute('aria-current', index === page ? 'page' : 'false'));
+    pageIndicator.textContent = isEnglish ? `${page + 1} / ${pageCount}` : `第 ${page + 1} / ${pageCount} 页`;
     previous.disabled = pageCount < 2 || page === 0;
     next.disabled = pageCount < 2 || page === pageCount - 1;
   };
@@ -262,7 +276,7 @@ function renderShowcase(host, items, makeCard, type) {
     dot.addEventListener('click', () => { page = index; update(); });
     dots.append(dot);
   }
-  controls.append(previous, dots, next);
+  controls.append(previous, pageIndicator, dots, next);
   content.append(main, side);
   showcase.append(content, controls);
   host.replaceChildren(showcase);

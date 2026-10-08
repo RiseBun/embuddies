@@ -33,7 +33,31 @@ jobs:
           fetch-depth: 0
 
       - name: Test content automation
-        run: node --test automation/update-content.test.mjs
+        run: node --test automation/update-content.test.mjs automation/research-agent.test.mjs automation/research-orchestrator.test.mjs
+
+      - name: Research web content
+        id: research
+        env:
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-chat' }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL_PROVIDER: ${{ vars.MODEL_PROVIDER || 'deepseek' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4o-mini' }}
+          ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || 'claude-3-5-haiku-latest' }}
+        shell: bash
+        run: |
+          report_json="$RUNNER_TEMP/research-report.json"
+          report_markdown="$RUNNER_TEMP/research-report.md"
+          arguments=(--report-json "$report_json" --report-markdown "$report_markdown")
+          if [[ "$DRY_RUN" == "true" ]]; then
+            arguments+=(--dry-run)
+          fi
+          node automation/research-orchestrator.mjs "${arguments[@]}"
+          cat "$report_markdown" >> "$GITHUB_STEP_SUMMARY"
+          echo "report_json=$report_json" >> "$GITHUB_OUTPUT"
+          echo "report_markdown=$report_markdown" >> "$GITHUB_OUTPUT"
 
       - name: Collect content
         id: collect
@@ -46,9 +70,13 @@ jobs:
             arguments+=(--dry-run)
           fi
           node automation/update-content.mjs "${arguments[@]}"
-          cat "$report_markdown" >> "$GITHUB_STEP_SUMMARY"
+          combined_report="$RUNNER_TEMP/content-refresh-report.md"
+          cat "${{ steps.research.outputs.report_markdown }}" > "$combined_report"
+          printf '\n\n' >> "$combined_report"
+          cat "$report_markdown" >> "$combined_report"
+          cat "$combined_report" >> "$GITHUB_STEP_SUMMARY"
           echo "report_json=$report_json" >> "$GITHUB_OUTPUT"
-          echo "report_markdown=$report_markdown" >> "$GITHUB_OUTPUT"
+          echo "report_markdown=$combined_report" >> "$GITHUB_OUTPUT"
 
       - name: Upload dry-run report
         if: env.DRY_RUN == 'true'
@@ -56,6 +84,8 @@ jobs:
         with:
           name: embuddies-content-report
           path: |
+            ${{ steps.research.outputs.report_json }}
+            ${{ steps.research.outputs.report_markdown }}
             ${{ steps.collect.outputs.report_json }}
             ${{ steps.collect.outputs.report_markdown }}
 
@@ -64,7 +94,7 @@ jobs:
         id: changes
         shell: bash
         run: |
-          if [[ -n "$(git status --porcelain -- updates/news.json updates/archive automation/candidates/projects.json)" ]]; then
+          if [[ -n "$(git status --porcelain -- updates/news.json updates/archive automation/candidates/projects.json automation/candidates/news.json)" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -78,7 +108,7 @@ jobs:
           git config user.name "embuddies content bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -C "$branch"
-          git add updates/news.json automation/candidates/projects.json
+          git add updates/news.json automation/candidates/projects.json automation/candidates/news.json
           if [[ -d updates/archive ]]; then git add updates/archive; fi
           git commit -m "Refresh verified content candidates"
           git push origin "HEAD:refs/heads/$branch" --force
@@ -89,4 +119,3 @@ jobs:
           else
             gh pr create --base main --head "$branch" --title "Review automated content refresh" --body-file "${{ steps.collect.outputs.report_markdown }}"
           fi
-

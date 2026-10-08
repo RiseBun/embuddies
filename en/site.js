@@ -1,5 +1,5 @@
 const links = [
-  ['/', 'Home'], ['/projects/?lang=en', 'Projects'], ['/en/learn/', 'Build guide'],
+  ['/', 'Home'], ['/projects/?lang=en', 'Projects'],
   ['/en/updates/', 'News'], ['/en/kits/', 'Kits'], ['/en/hackathon/', 'Hackathon'],
   ['/en/community/', 'Community'], ['/submit/?lang=en', 'Submit'], ['/en/about/', 'About']
 ];

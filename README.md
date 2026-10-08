@@ -26,7 +26,7 @@ Every published project and news item must use an image traceable to the origina
 
 ## Automated content maintenance
 
-The `Content refresh` GitHub Actions workflow runs at 08:00 and 20:00 Asia/Shanghai time. It checks the official source registry in [`automation/sources.json`](automation/sources.json), collects releases and feeds, and performs limited GitHub discovery. It never publishes a new project directly: all changes are pushed to the fixed `automation/content-refresh` branch and require pull-request review.
+The `Content refresh` GitHub Actions workflow runs at 08:00 and 20:00 Asia/Shanghai time. It checks the official source registry in [`automation/sources.json`](automation/sources.json), collects releases and feeds, performs limited GitHub discovery, and can run the separate web research agent. Research results remain internal candidates and never publish a new project directly: all changes are pushed to the fixed `automation/content-refresh` branch and require pull-request review.
 
 Run a local report without changing tracked content:
 
@@ -34,9 +34,39 @@ Run a local report without changing tracked content:
 node automation/update-content.mjs --dry-run --report-markdown content-report.md
 ```
 
+Run the multi-agent web research pipeline locally without changing tracked candidates:
+
+```sh
+node automation/research-orchestrator.mjs --dry-run --report-markdown research-report.md
+```
+
+To enable web research in GitHub Actions, add `BRAVE_SEARCH_API_KEY` and `DEEPSEEK_API_KEY` as repository Actions secrets. The default provider is DeepSeek; set `DEEPSEEK_MODEL` as an optional repository variable. OpenAI and Anthropic remain supported through `MODEL_PROVIDER` with their corresponding secrets. The orchestrator runs query planning, discovery, evidence extraction, source verification, image provenance verification and bilingual editorial generation. It writes only to [`automation/candidates/projects.json`](automation/candidates/projects.json), [`automation/candidates/news.json`](automation/candidates/news.json) and the ignored local research cache; missing API keys skip the affected stage without stopping official content refresh.
+
+The research cache is an internal execution store, not a public data source. Candidate status remains `needs_review` until attribution, licensing, media rights and reproducibility have been checked manually. Use `node automation/research-agent.mjs` when only the deterministic discovery stage is needed.
+
+### Research Agent design
+
+The research system is a controlled multi-agent pipeline, not an autonomous publisher:
+
+```text
+planner → discovery → evidence extraction → source verification
+        → image provenance verification → bilingual editorial → review PR
+```
+
+- `planner` expands the seed topics into Chinese and English queries without replacing the configured source policy.
+- `discovery` uses Brave, GitHub, RSS/Atom and known official pages. Search results are treated as low-trust discovery evidence.
+- `evidence extraction` collects canonical URLs, authors, dates, page descriptions, project images, licenses and BOM/CAD/firmware/build-guide signals. Static fetch runs first; Playwright is limited to dynamic-page fallback.
+- `source verification` checks attribution and original project links. `image provenance verification` checks that a project image has a traceable source; generated placeholder artwork is never accepted.
+- `editorial` creates structured Chinese and English metadata. Model output is JSON-validated and cannot access Git, GitHub permissions, Supabase or publishing tools.
+- The deterministic Node.js orchestrator owns network calls, filtering, deduplication, file writes, cache records and PR generation. DeepSeek is the default model provider; OpenAI and Anthropic adapters remain available.
+
+The pipeline writes only internal candidate files and an ignored execution cache. It never writes directly to `projects/catalog.json` or public `updates/news.json`. Every candidate remains `needs_review`, and the fixed `automation/content-refresh` branch plus a human-reviewed pull request is the publication boundary. If a search or model secret is missing, the affected research stage is skipped while official GitHub/RSS maintenance continues.
+
+The current implementation intentionally keeps the public site data in JSON and Git. The internal cache can later move to SQLite or Supabase if research history, concurrent reviewers or full-text search outgrow the local JSON cache.
+
 Run the deterministic content tests with `pnpm test`. Browser smoke tests use `pnpm test:ui`. The active news feed keeps the newest 100 entries; older entries are moved into yearly files under `updates/archive/`. Candidate projects remain internal in `automation/candidates/projects.json` until attribution, licensing, media rights and build documentation have been reviewed manually.
 
-Scheduled runs use only the repository `GITHUB_TOKEN`. In repository Actions settings, allow workflows to create pull requests. Manual workflow runs default to dry-run mode and upload the JSON and Markdown reports as artifacts.
+Scheduled runs use the repository `GITHUB_TOKEN` plus the optional research secrets. In repository Actions settings, allow workflows to create pull requests. Manual workflow runs default to dry-run mode and upload the research and content JSON/Markdown reports as artifacts.
 
 ## Partner-kit pilot
 

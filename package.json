@@ -4,10 +4,12 @@
   "type": "module",
   "packageManager": "pnpm@11.19.0",
   "scripts": {
-    "test": "node --test automation/update-content.test.mjs",
+    "test": "node --test automation/update-content.test.mjs automation/research-agent.test.mjs automation/research-orchestrator.test.mjs",
     "test:ui": "playwright test",
     "content:refresh": "node automation/update-content.mjs",
-    "content:dry-run": "node automation/update-content.mjs --dry-run"
+    "content:dry-run": "node automation/update-content.mjs --dry-run",
+    "research:orchestrate": "node automation/research-orchestrator.mjs",
+    "research:dry-run": "node automation/research-orchestrator.mjs --dry-run"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0"

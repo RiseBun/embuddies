@@ -25,7 +25,11 @@ export const readinessLabels = {
 };
 
 export function language() {
-  return new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'zh';
+  const override = new URLSearchParams(location.search).get('lang');
+  if (override === 'en' || override === 'zh') return override;
+  if (document.documentElement.lang === 'en') return 'en';
+  const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
+  return languages.some(value => value?.toLowerCase().startsWith('en')) ? 'en' : 'zh';
 }
 
 export function translated(value, lang = language()) {
@@ -50,13 +54,6 @@ export function setLanguageLinks(lang = language()) {
       else url.pathname = `/en${url.pathname}`;
     }
     link.href = url.pathname + url.search + url.hash;
-  });
-  document.querySelectorAll('[data-language-switch]').forEach(link => {
-    const url = new URL(location.href);
-    if (lang === 'en') url.searchParams.delete('lang');
-    else url.searchParams.set('lang', 'en');
-    link.href = url.pathname + url.search + url.hash;
-    link.textContent = lang === 'en' ? '中文' : 'EN';
   });
 }
 
