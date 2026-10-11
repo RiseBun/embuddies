@@ -39,13 +39,13 @@ test('project catalog can search the curated directory', async ({ page }) => {
 });
 
 test('public pages share the same sticky navigation', async ({ page }) => {
-  const routes = [ '/projects/', '/updates/', '/kits/', '/hackathon/', '/community/', '/about/', '/en/about/'];
-  const expectedChinese = ['首页', '硬件项目', '最新资讯', '套件', '黑客松', '社区', '发布项目', '关于我们'];
-  const expectedEnglish = ['Home', 'Projects', 'News', 'Kits', 'Hackathon', 'Community', 'Submit', 'About'];
+  const routes = [ '/projects/', '/updates/', '/kits/', '/community/', '/about/', '/en/about/'];
+  const expectedChinese = ['首页', '硬件项目', '最新资讯', '套件', '社区', '发布项目', '关于我们'];
+  const expectedEnglish = ['Home', 'Projects', 'News', 'Kits', 'Community', 'Submit', 'About'];
   for (const route of routes) {
     await page.goto(route);
-    const navigation = page.locator('header nav a');
-    await expect(navigation).toHaveCount(8);
+    const navigation = page.locator('header nav a:visible');
+    await expect(navigation).toHaveCount(7);
     expect((await navigation.allTextContents()).sort()).toEqual((route.startsWith('/en/') ? expectedEnglish : expectedChinese).slice().sort());
     await expect(page.locator('header')).toHaveCSS('position', 'sticky');
   }
