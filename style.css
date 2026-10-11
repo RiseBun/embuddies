@@ -109,3 +109,6 @@ html:lang(en) .hero-top>span:last-child{white-space:normal;text-align:right;max-
 @media(max-width:760px){.logo .embuddies-wordmark{width:145px;height:28px}}
 
 @media(min-width:761px){.site-header nav a{padding-left:8px;padding-right:8px}}
+
+/* Temporarily hide hackathon promotion and navigation. */
+a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}

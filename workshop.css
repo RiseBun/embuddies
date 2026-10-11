@@ -594,3 +594,6 @@ footer { margin-top: 0; padding: 28px 0 34px; background: #fff; border-top-color
 .project-card-media,
 .news-list-media,
 .detail-image { border-radius: 8px; overflow: hidden; }
+
+/* Temporarily hide hackathon promotion and navigation. */
+a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
