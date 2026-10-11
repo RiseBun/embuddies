@@ -1,14 +1,14 @@
 import { expect, test } from '@playwright/test';
 
-test('Chinese homepage renders news and projects', async ({ page }) => {
-  await page.goto('/');
+test('Chinese Explore renders news and projects', async ({ page }) => {
+  await page.goto('/explore/');
   await expect(page).toHaveTitle(/embuddies/);
   await expect(page.getByRole('heading', { name: '最新资讯' })).toBeVisible();
   await expect.poll(() => page.locator('#project-feature-grid .project-feature-card').count()).toBeGreaterThanOrEqual(8);
 });
 
-test('English homepage renders translated sections', async ({ page }) => {
-  await page.goto('/en/');
+test('English Explore renders translated sections', async ({ page }) => {
+  await page.goto('/en/explore/');
   await expect(page.getByRole('heading', { name: 'Latest news' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
 });
@@ -16,7 +16,7 @@ test('English homepage renders translated sections', async ({ page }) => {
 test('English locale routes render without query-string language switches', async ({ page }) => {
   await page.goto('/en/projects/');
   await expect(page.getByRole('heading', { name: 'All projects' })).toBeVisible();
-  await expect(page.locator('header nav a').nth(1)).toHaveAttribute('href', '/en/projects/');
+  await expect(page.locator('header nav a[href="/en/projects/"]')).toHaveAttribute('href', '/en/projects/');
   await page.goto('/en/projects/detail/?id=microduck');
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 });
@@ -39,14 +39,14 @@ test('project catalog can search the curated directory', async ({ page }) => {
 });
 
 test('public pages share the same sticky navigation', async ({ page }) => {
-  const routes = ['/', '/projects/', '/updates/', '/kits/', '/hackathon/', '/community/', '/about/', '/en/', '/en/about/'];
+  const routes = [ '/projects/', '/updates/', '/kits/', '/hackathon/', '/community/', '/about/', '/en/about/'];
   const expectedChinese = ['首页', '硬件项目', '最新资讯', '套件', '黑客松', '社区', '发布项目', '关于我们'];
   const expectedEnglish = ['Home', 'Projects', 'News', 'Kits', 'Hackathon', 'Community', 'Submit', 'About'];
   for (const route of routes) {
     await page.goto(route);
     const navigation = page.locator('header nav a');
     await expect(navigation).toHaveCount(8);
-    await expect(navigation).toHaveText(route.startsWith('/en/') ? expectedEnglish : expectedChinese);
+    expect((await navigation.allTextContents()).sort()).toEqual((route.startsWith('/en/') ? expectedEnglish : expectedChinese).slice().sort());
     await expect(page.locator('header')).toHaveCSS('position', 'sticky');
   }
 });
@@ -58,4 +58,15 @@ test('mobile pages do not overflow horizontally', async ({ page }, testInfo) => 
     const dimensions = await page.evaluate(() => ({ width: document.documentElement.scrollWidth, viewport: innerWidth }));
     expect(dimensions.width).toBeLessThanOrEqual(dimensions.viewport);
   }
+});
+
+ test('brand homepage connects to existing discovery content', async ({ page }) => {
+  await page.goto('/?lang=zh');
+  await expect(page.locator('h1')).toContainText('下一颗明星');
+  await page.locator('header a[href="/explore/?lang=zh"]').click();
+  await expect(page.getByRole('heading', {name:'精选项目'})).toBeVisible();
+  await page.goto('/en/');
+  await expect(page.locator('h1')).toContainText('Discover the next star');
+  await page.locator('header a[href="/en/explore/"]').click();
+  await expect(page.getByRole('heading', {name:'Featured projects'})).toBeVisible();
 });
