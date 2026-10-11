@@ -63,10 +63,12 @@ test('mobile pages do not overflow horizontally', async ({ page }, testInfo) => 
  test('brand homepage connects to existing discovery content', async ({ page }) => {
   await page.goto('/?lang=zh');
   await expect(page.locator('h1')).toContainText('下一颗明星');
+  if (await page.locator('.menu-button').isVisible()) await page.locator('.menu-button').click();
   await page.locator('header a[href="/explore/?lang=zh"]').click();
   await expect(page.getByRole('heading', {name:'精选项目'})).toBeVisible();
   await page.goto('/en/');
   await expect(page.locator('h1')).toContainText('Discover the next star');
+  if (await page.locator('.menu-button').isVisible()) await page.locator('.menu-button').click();
   await page.locator('header a[href="/en/explore/"]').click();
   await expect(page.getByRole('heading', {name:'Featured projects'})).toBeVisible();
 });
