@@ -1,6 +1,6 @@
 const links = [
   ['/en/', 'Home'], ['/en/projects/', 'Projects'],
-  ['/en/updates/', 'News'], ['/en/kits/', 'Kits'], ['/en/hackathon/', 'Hackathon'],
+  ['/en/updates/', 'News'], ['/en/kits/', 'Kits'],
   ['/en/community/', 'Community'], ['/en/submit/', 'Submit'], ['/en/about/', 'About']
 ];
 
