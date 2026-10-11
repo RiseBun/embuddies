@@ -107,3 +107,5 @@ html:lang(en) .hero-top>span:last-child{white-space:normal;text-align:right;max-
 .embuddies-wordmark,.footer-name .embuddies-wordmark{display:inline-block;width:180px;height:34px;font-size:0;vertical-align:middle;background:url('/assets/embuddies-logo.png') center 48% / 110% auto no-repeat;filter:invert(1);mix-blend-mode:screen}
 .footer-name .embuddies-wordmark{width:156px;height:30px}
 @media(max-width:760px){.logo .embuddies-wordmark{width:145px;height:28px}}
+
+@media(min-width:761px){.site-header nav a{padding-left:8px;padding-right:8px}}
