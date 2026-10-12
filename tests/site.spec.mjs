@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('Chinese Explore renders news and projects', async ({ page }) => {
   await page.goto('/explore/');
-  await expect(page).toHaveTitle(/embuddies/);
+  await expect(page).toHaveTitle(/EM buddies/);
   await expect(page.getByRole('heading', { name: '最新资讯' })).toBeVisible();
   await expect.poll(() => page.locator('#project-feature-grid .project-feature-card').count()).toBeGreaterThanOrEqual(8);
 });
