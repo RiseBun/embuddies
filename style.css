@@ -355,3 +355,14 @@ html:lang(en) .brand-home .hero-copy{max-width:1140px;width:100%}html:lang(en) .
 @media(prefers-reduced-motion:reduce){#partners .partner-template{transition:none}#partners .partner-template:hover{transform:none}}
 #partners .editorial-grid h2,html:lang(en) #partners .editorial-grid h2{max-width:none;width:100%;margin-left:auto;margin-right:auto;text-align:center}
 #partners .prose .button.primary{background:#000000!important;color:#ffffff!important;border-color:#000000!important;box-shadow:none;backdrop-filter:none}
+/* Compact activity cards with gentle native scrolling. */
+.activity-track{gap:18px;scroll-snap-type:x proximity;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;padding-bottom:20px}
+.activity-card{flex:0 0 238px;max-width:238px;border-radius:19px;scroll-snap-stop:normal}
+.activity-cover{height:144px}
+.activity-badge{width:58px;height:58px;margin:-29px auto 14px;border-width:5px;font-size:23px}
+.activity-card h3{font-size:18px;margin:0 11px 6px;letter-spacing:-.35px;line-height:1.25}
+.activity-status{font-size:12px;margin-bottom:13px}
+.activity-description{font-size:12px;line-height:1.6;min-height:58px;margin:0 17px 17px}
+.activity-card .button{margin:0 17px 18px;padding:10px 11px;min-height:40px;font-size:12px;gap:16px}
+@media(max-width:600px){.activity-card{flex-basis:min(238px,70vw);max-width:238px}.activity-track{gap:16px}}
+@media(prefers-reduced-motion:reduce){.activity-track{scroll-behavior:auto}}
