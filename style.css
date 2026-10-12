@@ -169,3 +169,58 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
 .language-switch:hover{background:#f1eef7}
 @media(min-width:761px){.site-header nav{background:#faf9fc;border-color:#eae7ef}.nav-glass{background:linear-gradient(135deg,#fff,#f1edf9);border-color:#ded8e9;box-shadow:0 2px 8px rgba(50,35,75,.05)}}
 @media(max-width:760px){.site-header nav{background:#fff;border-color:var(--line)}}
+
+/* Approved spacious centered layout and translucent glass controls. */
+.site-header,.site-footer,.section-label,.brand-pillars,.community-grid,.form-context{border:0}
+.site-header{height:108px}
+.site-header nav{background:transparent;border:0;box-shadow:none}
+.nav-glass{display:none}
+.site-header nav a[aria-current]{background:transparent;color:var(--fg)}
+.embuddies-wordmark,.footer-name .embuddies-wordmark{background-size:100% auto;background-position:center}
+.button,.button.primary,.button.secondary,.button.text-button{border-radius:999px;border:1px solid rgba(133,122,174,.24);background:linear-gradient(150deg,rgba(255,255,255,.94),rgba(241,239,248,.64));box-shadow:inset 0 2px 2px rgba(255,255,255,.95),inset 0 -2px 3px rgba(170,157,207,.12),0 7px 18px rgba(61,46,93,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#282431;padding:14px 28px;min-height:54px;gap:28px;font-size:14px;font-weight:400;transition:transform .2s,box-shadow .2s,background .2s}
+.button.primary{background:linear-gradient(150deg,rgba(249,247,255,.92),rgba(221,212,249,.72));border-color:rgba(160,139,223,.4)}
+.button:hover,.button.primary:hover,.button.secondary:hover{background:linear-gradient(150deg,#fff,rgba(231,223,250,.82));box-shadow:inset 0 2px 2px #fff,0 10px 24px rgba(61,46,93,.11);transform:translateY(-2px);color:#282431}
+.button:disabled{transform:none}
+.section{padding-block:110px}
+.brand-home .hero{padding-block:120px 140px;text-align:center}
+.brand-home .hero-copy{display:flex;flex-direction:column;align-items:center;margin:0 auto}
+.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:clamp(42px,5.2vw,70px);line-height:1.12;font-weight:700;letter-spacing:-.045em;max-width:850px;margin:0 auto 42px}
+.brand-home .hero-position{max-width:620px;font-size:18px;line-height:1.85;color:var(--muted)}
+.brand-home .hero .actions{justify-content:center;margin-top:42px}
+.brand-home .hero-intro{order:4;margin-top:100px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#91909e}
+.brand-home .section{padding-block:110px;text-align:center}
+.brand-home .section-label{display:none}
+.brand-home .editorial-grid,.brand-home .roster-layout,.brand-home .section-heading{display:flex;flex-direction:column;align-items:center;gap:36px}
+.brand-home .editorial-grid h2,.brand-home .section-heading h2,.brand-home .display-en,.brand-home .closing h2{font-size:clamp(30px,3.5vw,46px);font-weight:700;line-height:1.18;max-width:780px;letter-spacing:-.035em}
+.brand-home h2 .accent{color:var(--fg)}
+.brand-home .prose,.brand-home .section-heading>p{max-width:700px;margin-inline:auto;font-size:18px;line-height:1.8}
+.brand-home .prose .lead{font-size:18px;line-height:1.8;color:var(--muted)}
+.brand-home .roster-section{background:#f8f5fe}
+.brand-home .roster-layout{gap:34px}
+.brand-home .roster-layout>div:first-child{display:flex;flex-direction:column;align-items:center}
+.brand-home .roster-line{order:-1;font-size:clamp(36px,4.3vw,58px);line-height:1.18;font-weight:700;letter-spacing:-.04em;color:var(--fg);margin:0 0 30px}
+.brand-home .display-en{font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
+.brand-home .roster-invitation{border:0;padding:0}
+.brand-home .roster-invitation .eyebrow{margin:0 auto;font-size:12px;color:var(--muted)}
+.brand-home .roster-invitation h3{font-size:21px;line-height:1.5;font-weight:400;margin-top:14px;letter-spacing:-.02em}
+.brand-home .roster-invitation h3 br{display:none}
+.brand-home #community .brand-pillars{border:0;padding:0;margin:64px auto 0;max-width:1040px;gap:52px;text-align:left}
+.brand-home .brand-pillars h3{font-size:20px;font-weight:600}
+.brand-home .brand-pillars p{font-size:16px}
+.brand-home .program-actions{justify-content:center;margin-top:48px}
+.brand-home .partner-band{background:#fafafa}
+.brand-home .closing{padding-block:120px}
+.brand-home .closing>.eyebrow{display:none}
+.site-footer{padding-block:50px;background:#fafafa}
+.form-page{padding-top:60px;padding-bottom:120px}
+.form-layout{gap:90px}
+.form-surface{border:0;border-radius:24px;padding:40px;background:#faf9fc}
+.field input,.field select,.field textarea{border-radius:12px}
+.team-layout{gap:90px}
+@media(max-width:760px){
+.site-header{height:84px}.site-header nav{top:84px;background:rgba(255,255,255,.97);box-shadow:0 12px 28px rgba(40,30,60,.07)}
+.brand-home .hero{padding-block:72px 82px}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:42px;max-width:100%;margin-bottom:30px}.brand-home .hero-position{font-size:16px}.brand-home .hero-intro{margin-top:64px;font-size:9px}.brand-home .hero .actions{margin-top:32px;gap:14px}
+.brand-home .section{padding-block:76px}.brand-home .editorial-grid,.brand-home .section-heading{gap:28px}.brand-home .prose,.brand-home .prose .lead,.brand-home .section-heading>p{font-size:16px}.brand-home .roster-line{font-size:38px}.brand-home .display-en{font-size:11px}.brand-home .roster-invitation h3{font-size:19px}.brand-home #community .brand-pillars{grid-template-columns:1fr;gap:32px;margin-top:44px;text-align:center}.brand-home .closing{padding-block:80px}.button{max-width:100%;padding:13px 22px;gap:20px}.form-page{padding-top:28px}.form-layout,.team-layout{gap:40px}.form-surface{padding:26px 20px}.site-footer{padding-block:36px}
+}
+@media(prefers-reduced-motion:reduce){.button:hover{transform:none}}
+.skip:not(:focus){clip-path:inset(50%);width:1px;height:1px;padding:0;overflow:hidden;white-space:nowrap}
