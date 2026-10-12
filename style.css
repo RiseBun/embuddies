@@ -381,3 +381,8 @@ html:lang(en) .brand-home .hero-copy{max-width:1140px;width:100%}html:lang(en) .
 #partners .partner-template p{font-size:16px;line-height:1.45;margin-bottom:20px}
 #partners .partner-template-link{font-size:14px;padding-top:16px}
 @media(max-width:600px){#partners .partner-template{min-height:205px;padding:22px}#partners .partner-template h3{font-size:38px}#partners .partner-template-grid{gap:14px}}
+/* Consistent left alignment for page and section headings. */
+main h1,main h2,main h3,html:lang(en) main h1,html:lang(en) main h2,html:lang(en) main h3{text-align:left!important}
+main h1,main h2,html:lang(en) main h1,html:lang(en) main h2{margin-left:0!important;margin-right:auto!important}
+.brand-home .hero-copy{width:100%}
+.brand-home .editorial-grid>div:first-child,.brand-home .section-heading>h2{align-self:stretch;width:100%}
