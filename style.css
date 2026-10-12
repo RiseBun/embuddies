@@ -143,3 +143,10 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
  .brand-home #community .brand-pillars{margin-top:28px;gap:24px}
  .brand-home .closing{padding-block:48px}
 }
+
+/* Typography-led homepage hero. */
+.brand-home .hero{min-height:0;padding-top:76px;padding-bottom:76px}
+.brand-home .hero-copy{margin-top:0;max-width:100%}
+.brand-home .hero h1{margin-top:0;max-width:1100px}
+.brand-home .hero-position{max-width:650px}
+@media(max-width:760px){.brand-home .hero{min-height:0;padding-top:48px;padding-bottom:48px}.brand-home .hero-copy{margin-top:0}.brand-home .hero-position{max-width:100%}}
