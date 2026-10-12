@@ -165,3 +165,5 @@ if(menu){menu.innerHTML='<span aria-hidden="true">↗</span>';syncMenuAccess();}
 if(nav){nav.addEventListener('keydown',e=>{if(e.key!=='Tab'||!nav.classList.contains('open'))return;const links=[...nav.querySelectorAll('a')];if(!e.shiftKey&&document.activeElement===links.at(-1)){e.preventDefault();menu.focus();}});}
 
 document.querySelectorAll('.hero-signature').forEach(el=>{el.textContent='EM buddies';el.setAttribute('aria-label','EM buddies');});
+// Approved partner-section headline.
+document.querySelectorAll('#partners .editorial-grid h2').forEach(el=>{el.textContent=document.documentElement.lang.startsWith('en')?'Build with us.':'与我们一起创造。';});
