@@ -29,7 +29,9 @@ function closeMenu(restoreFocus=false){
  if(wasOpen&&restoreFocus)menu.focus({preventScroll:true});
 }
 if(menu&&nav){
+ let openedByHover=false;
  menu.addEventListener('click',()=>{
+  if(openedByHover&&nav.classList.contains('open')){openedByHover=false;return;}
   const opened=menu.getAttribute('aria-expanded')!=='true';
   menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?copy("Close navigation","关闭导航"):copy("Open navigation","打开导航"));
   menu.querySelector('span').textContent=opened?'×':'↗';nav.classList.toggle('open',opened);syncMenuAccess();
@@ -39,6 +41,7 @@ if(menu&&nav){
  const openOnHover=e=>{
   if(e.pointerType==='touch')return;
   keepMenuOpen();
+  openedByHover=!nav.classList.contains('open');
   menu.setAttribute('aria-expanded','true');
   menu.setAttribute('aria-label',copy('Close navigation','关闭导航'));
   menu.querySelector('span').textContent='×';
