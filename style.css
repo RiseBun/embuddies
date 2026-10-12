@@ -403,3 +403,11 @@ main h1,main h2,html:lang(en) main h1,html:lang(en) main h2{margin-left:0!import
 #activities .activity-titles h2{font-size:clamp(36px,4.5vw,64px);line-height:1.1;font-weight:750}
 #activities .activity-subtitle{font-size:clamp(16px,1.7vw,22px);line-height:1.5;font-weight:500;color:#111;margin:18px 0 0;text-align:left}
 @media(max-width:760px){#activities .activity-titles h2{font-size:36px!important}#activities .activity-subtitle{margin-top:12px}#activities .activity-heading{align-items:flex-end}}
+/* Restore centered section titles and the reference brush signature. */
+main h1,main h2,html:lang(en) main h1,html:lang(en) main h2,#partners .editorial-grid h2,html:lang(en) #partners .editorial-grid h2{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+.brand-home .hero-signature{font-size:0!important;line-height:0;width:100%;height:auto;aspect-ratio:2170/725;background:url('/assets/em-buddies-brush.png') center/contain no-repeat}
+#activities .activity-heading{position:relative;justify-content:center}
+#activities .activity-titles{width:100%;text-align:center}
+#activities .activity-subtitle{text-align:center}
+#activities .activity-controls{position:absolute;right:0;bottom:0}
+@media(max-width:760px){#activities .activity-heading{padding-bottom:48px}}
