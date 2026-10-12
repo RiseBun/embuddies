@@ -239,3 +239,6 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
 .brand-home .hero h1,html:lang(en) .brand-home .hero h1{max-width:950px;font-size:clamp(38px,4.4vw,60px);line-height:1.25}
 .brand-home .hero h1 span{color:var(--fg)}
 @media(max-width:760px){.logo .embuddies-wordmark{width:84px;height:60px}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:36px}}
+
+/* Continuous white canvas; spacing defines the content groups. */
+.brand-home .roster-section,.brand-home .partner-band,.brand-home .site-footer{background:transparent}
