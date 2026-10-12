@@ -167,3 +167,5 @@ if(nav){nav.addEventListener('keydown',e=>{if(e.key!=='Tab'||!nav.classList.cont
 document.querySelectorAll('.hero-signature').forEach(el=>{el.textContent='EM buddies';el.setAttribute('aria-label','EM buddies');});
 // Approved partner-section headline.
 document.querySelectorAll('#partners .editorial-grid h2').forEach(el=>{el.textContent=document.documentElement.lang.startsWith('en')?'Build with us.':'与我们一起创造。';});
+// Remove redundant placeholder text from partner cards.
+document.querySelectorAll('#partners .template-label').forEach(el=>el.remove());
