@@ -150,3 +150,22 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
 .brand-home .hero h1{margin-top:0;max-width:1100px}
 .brand-home .hero-position{max-width:650px}
 @media(max-width:760px){.brand-home .hero{min-height:0;padding-top:48px;padding-bottom:48px}.brand-home .hero-copy{margin-top:0}.brand-home .hero-position{max-width:100%}}
+
+/* White brand theme. */
+:root{color-scheme:light;--bg:#fff;--surface:#f7f7fa;--fg:#23232b;--muted:#646471;--accent:#6855ad;--line:#e2e2e9}
+.roster-section,.partner-band,.journey-section,.season-info-section{background:#fff}
+.notice,.form-surface{background:var(--surface)}
+.site-header nav a{color:#62626e}
+.site-header nav a:hover{color:var(--fg)}
+.button.primary{background:#ddd5f5;color:#292137}
+.button.primary:hover{background:#d2c7ef;color:#292137}
+.button.secondary{border-color:#b9b6c2;color:var(--fg)}
+.button.secondary:hover{background:#f5f2fa}
+.embuddies-wordmark,.footer-name .embuddies-wordmark,.brand-image,.brand-image img,.wordmark-frame{filter:none;mix-blend-mode:multiply}
+.field input,.field select,.field textarea,.admin-update textarea,.admin-toolbar select{background:#fff;color:var(--fg);border-color:#b9b9c5}
+.field input::placeholder,.field textarea::placeholder{color:#767681}
+.form-feedback,.form-feedback[data-state="error"]{color:#a5294e}
+.field [aria-invalid="true"]{border-color:#a5294e}
+.language-switch:hover{background:#f1eef7}
+@media(min-width:761px){.site-header nav{background:#faf9fc;border-color:#eae7ef}.nav-glass{background:linear-gradient(135deg,#fff,#f1edf9);border-color:#ded8e9;box-shadow:0 2px 8px rgba(50,35,75,.05)}}
+@media(max-width:760px){.site-header nav{background:#fff;border-color:var(--line)}}
