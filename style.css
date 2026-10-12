@@ -330,3 +330,9 @@ html{filter:grayscale(1)}
 .button.primary{background:linear-gradient(135deg,#fff,#e9e9e9)!important;color:#111!important;border-color:#d8d8d8!important}
 .partner-template{background:#f0f0f0!important}.partner-template:nth-child(even){background:#e7e7e7!important}
 @media(max-width:760px){.brand-home .hero-signature{font-size:clamp(78px,20vw,150px);margin-bottom:26px}.brand-home .hero{padding-top:38px;padding-bottom:66px}}
+
+/* Plain bold navigation: hover reveal and character flip, without nested boxes. */
+.site-header nav{border:0!important;border-radius:0!important;box-shadow:none!important;padding:24px 30px!important;gap:8px!important}
+.site-header nav a,.site-header nav a:hover,.site-header nav a:focus-visible,.site-header nav a[aria-current],.site-header nav a[aria-current]:hover{background:transparent!important;color:#111!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-weight:800;padding:8px 0!important}
+.site-header nav a:focus-visible{outline:2px solid #111!important;outline-offset:4px}
+@media(max-width:600px){.site-header nav{padding:20px 18px!important}}

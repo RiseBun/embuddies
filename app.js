@@ -34,6 +34,24 @@ if(menu&&nav){
   menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?copy("Close navigation","关闭导航"):copy("Open navigation","打开导航"));
   menu.querySelector('span').textContent=opened?'×':'↗';nav.classList.toggle('open',opened);syncMenuAccess();
  });
+ let hoverCloseTimer;
+ const keepMenuOpen=()=>clearTimeout(hoverCloseTimer);
+ const openOnHover=e=>{
+  if(e.pointerType==='touch')return;
+  keepMenuOpen();
+  menu.setAttribute('aria-expanded','true');
+  menu.setAttribute('aria-label',copy('Close navigation','关闭导航'));
+  menu.querySelector('span').textContent='×';
+  nav.classList.add('open');syncMenuAccess();
+ };
+ const leaveMenu=e=>{
+  if(e.pointerType==='touch')return;
+  hoverCloseTimer=setTimeout(()=>{if(!nav.matches(':hover')&&!menu.matches(':hover')&&!nav.contains(document.activeElement))closeMenu();},250);
+ };
+ menu.addEventListener('pointerenter',openOnHover);
+ menu.addEventListener('pointerleave',leaveMenu);
+ nav.addEventListener('pointerenter',keepMenuOpen);
+ nav.addEventListener('pointerleave',leaveMenu);
  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu(true);});
  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.site-header'))closeMenu();});
