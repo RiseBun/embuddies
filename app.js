@@ -19,20 +19,20 @@ function revealFeedback(element,duration,travel=0,keyboard=false){
  animation.finished.catch(()=>{}).finally(()=>{if(feedbackAnimations.get(element)===animation)feedbackAnimations.delete(element);});
 }
 motionPreference.addEventListener('change',()=>{for(const animation of feedbackAnimations.values())animation.cancel();feedbackAnimations.clear();});
-function syncMenuAccess(){if(nav)nav.inert=matchMedia('(max-width:760px)').matches&&!nav.classList.contains('open');}
+function syncMenuAccess(){if(nav)nav.inert=!nav.classList.contains('open');}
 
 function closeMenu(restoreFocus=false){
  if(!menu||!nav)return;
  const wasOpen=menu.getAttribute('aria-expanded')==='true';
  menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label',copy("Open navigation","打开导航"));
- menu.querySelector('span').textContent='＋';nav.classList.remove('open');syncMenuAccess();
+ menu.querySelector('span').textContent='↗';nav.classList.remove('open');syncMenuAccess();
  if(wasOpen&&restoreFocus)menu.focus({preventScroll:true});
 }
 if(menu&&nav){
  menu.addEventListener('click',()=>{
   const opened=menu.getAttribute('aria-expanded')!=='true';
   menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?copy("Close navigation","关闭导航"):copy("Open navigation","打开导航"));
-  menu.querySelector('span').textContent=opened?'−':'＋';nav.classList.toggle('open',opened);syncMenuAccess();
+  menu.querySelector('span').textContent=opened?'×':'↗';nav.classList.toggle('open',opened);syncMenuAccess();
  });
  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu(true);});
@@ -92,10 +92,10 @@ if(nav){
  }
  function restore(instant=false){place(links.find(a=>a===document.activeElement)||hovered||activeLink(),instant);}
  function syncCurrent(){
-  const pathname=location.pathname.replace(/^\/zh(?=\/)/,'').replace(/^\/$/,'/index.html');
+  const pathname=location.pathname.replace(/^\/(?:zh|en)(?=\/)/,'').replace(/^\/$/,'/index.html');
   const hash=location.hash;
   links.forEach(a=>{
-   const url=new URL(a.href);url.pathname=url.pathname.replace(/^\/zh(?=\/)/,'');let current=false;
+   const url=new URL(a.href);url.pathname=url.pathname.replace(/^\/(?:zh|en)(?=\/)/,'').replace(/^\/$/,'/index.html');let current=false;
    if(pathname==='/index.html')current=url.pathname===pathname&&url.hash===(['#idols','#community'].includes(hash)?hash:'#about');
    else current=url.pathname===pathname;
    if(current)a.setAttribute('aria-current',url.hash?'location':'page');else a.removeAttribute('aria-current');
@@ -137,3 +137,9 @@ resize();resume();window.addEventListener('resize',resize,{passive:true});docume
 document.querySelectorAll('.activity-section').forEach(section=>{const track=section.querySelector('.activity-track'),buttons=section.querySelectorAll('[data-activity-step]');const update=()=>buttons.forEach(b=>b.disabled=Number(b.dataset.activityStep)<0?track.scrollLeft<2:track.scrollLeft+track.clientWidth>=track.scrollWidth-2);buttons.forEach(b=>b.addEventListener('click',()=>track.scrollBy({left:Number(b.dataset.activityStep)*(track.querySelector('.activity-card').offsetWidth+26),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})));track.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();});
 /* Compact team list: one revealed portrait, pointer and keyboard support. */
 document.querySelectorAll('.team-editorial .team-portraits').forEach(list=>{const rows=[...list.querySelectorAll('figure')];const activate=row=>rows.forEach(r=>r.classList.toggle('is-active',r===row));rows.forEach(row=>{row.tabIndex=0;row.addEventListener('pointerenter',()=>activate(row));row.addEventListener('focus',()=>activate(row));row.addEventListener('click',()=>activate(row));});if(rows.length)activate(rows[0]);});
+/* Reuse personal-site two-layer character flip, preserving link semantics. */
+document.querySelectorAll('.site-header nav a').forEach(link=>{const label=link.textContent.trim();link.setAttribute('aria-label',label);link.textContent='';const wrap=document.createElement('span');wrap.className='nav-flip';wrap.setAttribute('aria-hidden','true');for(let layer=0;layer<2;layer++){const text=document.createElement('span');text.className='nav-flip-layer layer-'+layer;Array.from(label).forEach((char,i)=>{const s=document.createElement('span');s.textContent=char===' '?'\u00a0':char;s.style.transitionDelay=(i*.012)+'s';text.append(s)});wrap.append(text)}link.append(wrap)});
+
+if(menu){menu.innerHTML='<span aria-hidden="true">↗</span>';syncMenuAccess();}
+document.querySelectorAll('.site-footer .footer-name').forEach(a=>{a.innerHTML='<span class="footer-handwriting">embuddies</span>';});
+if(nav){nav.addEventListener('keydown',e=>{if(e.key!=='Tab'||!nav.classList.contains('open'))return;const links=[...nav.querySelectorAll('a')];if(!e.shiftKey&&document.activeElement===links.at(-1)){e.preventDefault();menu.focus();}});}
