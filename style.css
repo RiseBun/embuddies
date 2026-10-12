@@ -274,3 +274,15 @@ body{isolation:isolate;background:#fff}.embuddies-dot-field{position:fixed;inset
 .site-footer .footer-name{order:10;flex:0 0 100%;display:flex;justify-content:center;margin:32px 0 0;padding:0;line-height:0}
 .site-footer .footer-name .embuddies-wordmark{display:block;width:min(74vw,820px);height:min(53vw,590px);max-width:100%;background-size:100% auto;background-position:center 51%;margin:0}
 @media(max-width:760px){.site-footer{gap:18px;padding:32px 20px 24px}.site-footer>p,.site-footer>div{flex-basis:100%}.site-footer>div{gap:14px 22px}.site-footer .footer-name{margin-top:20px}.site-footer .footer-name .embuddies-wordmark{width:88vw;height:64vw}}
+
+/* Reference-led centered hero with an inline keyword capsule. */
+.brand-home .hero{min-height:760px;padding-top:100px;padding-bottom:100px;display:flex;align-items:center;justify-content:center}
+.brand-home .hero-copy{width:100%;max-width:1140px;text-align:center;margin:auto}
+.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:clamp(46px,6.4vw,88px);line-height:1.12;letter-spacing:-.055em;font-weight:750;max-width:1140px;margin:0 auto 34px;text-align:center}
+.brand-home .hero h1 span{display:inline-block;background:#eadcf8;color:#23232b;border-radius:999px;padding:.025em .3em .09em;margin-top:.12em;letter-spacing:-.05em}
+.brand-home .hero-position{width:100%;max-width:740px;font-size:clamp(18px,2vw,25px);line-height:1.5;margin:0 auto 34px}
+.brand-home .hero .actions{margin-top:0;gap:16px;justify-content:center}.brand-home .hero .button{font-size:16px;padding:17px 28px}
+.brand-home .hero-intro{margin-top:0}.brand-home .hero-copy{display:flex;flex-direction:column}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{order:0}.brand-home .hero-position{order:1}.brand-home .hero .actions{order:2}.brand-home .hero-intro{order:3;margin:44px 0 0}
+@media(max-width:760px){.brand-home .hero{min-height:650px;padding-top:70px;padding-bottom:70px}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:clamp(38px,8vw,60px);letter-spacing:-.045em;margin-bottom:28px}.brand-home .hero-position{font-size:18px;max-width:540px}.brand-home .hero .actions{gap:12px;flex-wrap:wrap}.brand-home .hero .button{font-size:14px;padding:14px 22px}.brand-home .hero-intro{margin-top:34px}}
+html:lang(en) .brand-home .hero-copy{max-width:1140px;width:100%}html:lang(en) .brand-home .hero-position{max-width:740px;width:100%}.brand-home .hero h1{width:100%}
+@media(max-width:760px){html:lang(en) .brand-home .hero-copy,html:lang(en) .brand-home .hero-position{max-width:100%}}
