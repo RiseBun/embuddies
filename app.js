@@ -141,5 +141,7 @@ document.querySelectorAll('.team-editorial .team-portraits').forEach(list=>{cons
 document.querySelectorAll('.site-header nav a').forEach(link=>{const label=link.textContent.trim();link.setAttribute('aria-label',label);link.textContent='';const wrap=document.createElement('span');wrap.className='nav-flip';wrap.setAttribute('aria-hidden','true');for(let layer=0;layer<2;layer++){const text=document.createElement('span');text.className='nav-flip-layer layer-'+layer;Array.from(label).forEach((char,i)=>{const s=document.createElement('span');s.textContent=char===' '?'\u00a0':char;s.style.transitionDelay=(i*.012)+'s';text.append(s)});wrap.append(text)}link.append(wrap)});
 
 if(menu){menu.innerHTML='<span aria-hidden="true">↗</span>';syncMenuAccess();}
-document.querySelectorAll('.site-footer .footer-name').forEach(a=>{a.innerHTML='<span class="footer-handwriting">embuddies</span>';});
+document.querySelectorAll('.site-footer .footer-name').forEach(a=>{a.innerHTML='<span class="footer-handwriting">EMbuddies</span>';});
 if(nav){nav.addEventListener('keydown',e=>{if(e.key!=='Tab'||!nav.classList.contains('open'))return;const links=[...nav.querySelectorAll('a')];if(!e.shiftKey&&document.activeElement===links.at(-1)){e.preventDefault();menu.focus();}});}
+
+document.querySelectorAll('.hero-signature').forEach(el=>{el.textContent='EMbuddies';el.setAttribute('aria-label','EMbuddies');});
