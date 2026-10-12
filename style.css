@@ -242,3 +242,21 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
 
 /* Continuous white canvas; spacing defines the content groups. */
 .brand-home .roster-section,.brand-home .partner-band,.brand-home .site-footer{background:transparent}
+
+/* Oversized editorial team directory, using the existing portraits. */
+.team-editorial .team-section{padding-top:48px;padding-bottom:120px}
+.team-editorial .team-section .section-label{margin-bottom:36px}
+.team-editorial .team-layout{display:block}
+.team-editorial .team-layout>div:first-child{max-width:650px;margin-bottom:72px}
+.team-editorial .team-layout h1{font-size:clamp(26px,3vw,38px);line-height:1.3}
+.team-editorial .team-layout>div>p{max-width:none;font-size:17px;margin-top:18px}
+.team-editorial .team-portraits{display:flex;flex-direction:column;max-width:none;gap:40px}
+.team-editorial .team-portraits figure{display:flex;align-items:center;gap:48px;margin:0;transition:opacity .25s,transform .25s}
+.team-editorial .portrait-crop{width:220px;height:240px;flex:0 0 220px;aspect-ratio:auto;border-radius:26px;transition:transform .3s;overflow:hidden}
+.team-editorial .team-portraits figcaption{padding:0}
+.team-editorial .team-portraits figcaption strong{font-size:clamp(48px,7.5vw,104px);line-height:1.05;letter-spacing:-.055em;font-weight:700;color:#111}
+.team-editorial .team-portraits figcaption span{font-size:16px;margin-top:20px;letter-spacing:0}
+.team-editorial .site-footer{background:#fff}
+@media(hover:hover) and (pointer:fine){.team-editorial .team-portraits:has(figure:hover) figure:not(:hover){opacity:.35}.team-editorial .team-portraits figure:hover .portrait-crop{transform:scale(1.04)}.team-editorial .team-portraits figure:hover{transform:translateX(8px)}}
+@media(max-width:760px){.team-editorial .team-section{padding-top:24px;padding-bottom:76px}.team-editorial .team-layout>div:first-child{margin-bottom:48px}.team-editorial .team-portraits{gap:40px}.team-editorial .team-portraits figure{gap:22px}.team-editorial .portrait-crop{width:132px;height:154px;flex-basis:132px;border-radius:20px}.team-editorial .team-portraits figcaption strong{font-size:clamp(32px,7vw,52px);letter-spacing:-.045em}.team-editorial .team-portraits figcaption span{font-size:13px;margin-top:12px}}
+@media(max-width:380px){.team-editorial .portrait-crop{width:112px;height:138px;flex-basis:112px}.team-editorial .team-portraits figure{gap:16px}}
