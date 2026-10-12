@@ -232,3 +232,10 @@ a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
  .site-header nav a:hover{color:var(--fg)}
 }
 @media(max-width:760px){.site-header nav a[aria-current]{background:rgba(221,212,249,.4)}}
+
+/* Approved LinkedIn identity. */
+.embuddies-wordmark,.footer-name .embuddies-wordmark{width:112px;height:78px;background-image:url('/assets/embuddies-linkedin-logo.png');background-size:100% auto;background-position:center 51%;filter:none;mix-blend-mode:multiply}
+.footer-name .embuddies-wordmark{width:100px;height:72px}
+.brand-home .hero h1,html:lang(en) .brand-home .hero h1{max-width:950px;font-size:clamp(38px,4.4vw,60px);line-height:1.25}
+.brand-home .hero h1 span{color:var(--fg)}
+@media(max-width:760px){.logo .embuddies-wordmark{width:84px;height:60px}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:36px}}
