@@ -112,3 +112,34 @@ html:lang(en) .hero-top>span:last-child{white-space:normal;text-align:right;max-
 
 /* Temporarily hide hackathon promotion and navigation. */
 a[href*="/hackathon"],a[href*="season-01.html"]{display:none!important}
+
+/* Homepage editorial alignment after copy reduction. */
+.brand-home .section{padding-block:76px}
+.brand-home .section-label{margin-bottom:40px;align-items:baseline}
+.brand-home .editorial-grid,.brand-home .roster-layout,.brand-home .section-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.brand-home .editorial-grid h2,.brand-home .section-heading h2,.brand-home .display-en{font-size:clamp(30px,3.4vw,44px);line-height:1.2;letter-spacing:-.035em}
+.brand-home .prose,.brand-home .section-heading>p{max-width:100%;font-size:17px;line-height:1.8}
+.brand-home .prose .lead{font-size:21px;line-height:1.6}
+.brand-home .roster-invitation{padding:0;border:0}
+.brand-home .roster-invitation .eyebrow{max-width:38ch;line-height:1.6}
+.brand-home .roster-invitation h3{font-size:clamp(26px,2.5vw,32px);line-height:1.3;margin:16px 0 0}
+.brand-home .roster-line{font-size:24px;line-height:1.5;margin-top:20px}
+.brand-home .roster-invitation .button,.brand-home .partner-band .button{margin-top:28px}
+.brand-home .partner-band .fine-print{margin-top:18px}
+.brand-home #community .section-heading{margin-bottom:0}
+.brand-home #community .brand-pillars{margin-top:36px;padding-top:26px;gap:32px}
+.brand-home #community .brand-pillars h3{margin-top:0}
+.brand-home .closing{padding-block:64px}
+@media(max-width:1000px){.brand-home .editorial-grid,.brand-home .roster-layout,.brand-home .section-heading{gap:36px}}
+@media(max-width:760px){
+ .brand-home .section{padding-block:48px}
+ .brand-home .section-label{margin-bottom:28px;align-items:start}
+ .brand-home .editorial-grid,.brand-home .roster-layout,.brand-home .section-heading{grid-template-columns:1fr;gap:28px}
+ .brand-home .prose,.brand-home .section-heading>p{font-size:16px}
+ .brand-home .prose .lead{font-size:20px}
+ .brand-home .roster-invitation{padding-top:24px;border-top:1px solid var(--line)}
+ .brand-home .roster-line{font-size:22px;margin-top:16px}
+ .brand-home .roster-invitation .button,.brand-home .partner-band .button{margin-top:24px}
+ .brand-home #community .brand-pillars{margin-top:28px;gap:24px}
+ .brand-home .closing{padding-block:48px}
+}
