@@ -286,3 +286,14 @@ body{isolation:isolate;background:#fff}.embuddies-dot-field{position:fixed;inset
 @media(max-width:760px){.brand-home .hero{min-height:650px;padding-top:70px;padding-bottom:70px}.brand-home .hero h1,html:lang(en) .brand-home .hero h1{font-size:clamp(38px,8vw,60px);letter-spacing:-.045em;margin-bottom:28px}.brand-home .hero-position{font-size:18px;max-width:540px}.brand-home .hero .actions{gap:12px;flex-wrap:wrap}.brand-home .hero .button{font-size:14px;padding:14px 22px}.brand-home .hero-intro{margin-top:34px}}
 html:lang(en) .brand-home .hero-copy{max-width:1140px;width:100%}html:lang(en) .brand-home .hero-position{max-width:740px;width:100%}.brand-home .hero h1{width:100%}
 @media(max-width:760px){html:lang(en) .brand-home .hero-copy,html:lang(en) .brand-home .hero-position{max-width:100%}}
+/* Cosmos-sized name list; portrait only is doubled from 64 to 128. */
+.team-editorial .team-portraits{gap:8px}
+.team-editorial .team-portraits figure{min-height:128px;gap:0;opacity:1!important;transform:none!important;outline-offset:6px}
+.team-editorial .team-portraits .portrait-crop{width:0;height:128px;flex:0 0 auto;margin-right:0;border-radius:12px;transform:none!important;transition:width .4s ease-in-out,margin-right .4s ease-in-out}
+.team-editorial .team-portraits .portrait-crop img{width:128px;height:128px;max-width:none;object-fit:cover;object-position:center 20%;transform:none}
+.team-editorial .team-portraits figure.is-active .portrait-crop{width:128px;margin-right:16px}
+.team-editorial .team-portraits figcaption strong{font-size:72px;line-height:1;letter-spacing:-.045em;color:#111}
+.team-editorial .team-portraits figcaption span{font-size:14px;margin-top:8px}
+@media(min-width:1536px){.team-editorial .team-portraits figure{min-height:144px}.team-editorial .team-portraits .portrait-crop,.team-editorial .team-portraits .portrait-crop img{height:144px}.team-editorial .team-portraits .portrait-crop img,.team-editorial .team-portraits figure.is-active .portrait-crop{width:144px}}
+@media(max-width:760px){.team-editorial .team-portraits figcaption strong{font-size:clamp(32px,7vw,48px)}.team-editorial .team-portraits figure{min-height:128px}.team-editorial .team-portraits figure.is-active .portrait-crop{margin-right:12px}}
+@media(prefers-reduced-motion:reduce){.team-editorial .team-portraits .portrait-crop{transition:none}}
