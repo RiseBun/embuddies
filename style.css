@@ -397,3 +397,9 @@ main h1,main h2,html:lang(en) main h1,html:lang(en) main h2{margin-left:0!import
 @media(max-width:760px){#partners .partner-template:nth-child(n){min-height:112px;padding:18px 0}#partners .partner-template h3{font-size:clamp(30px,7vw,48px)}#partners .partner-template-grid{margin-top:32px}}
 @media(hover:none){#partners .partner-template p,#partners .partner-template-link{max-height:70px;opacity:1;margin-top:10px}}
 @media(prefers-reduced-motion:reduce){#partners .partner-template h3,#partners .partner-template p,#partners .partner-template-link{transition:none}#partners .partner-template:hover h3,#partners .partner-template:focus-visible h3{transform:none}}
+
+/* Activities title hierarchy. */
+#activities .activity-titles{min-width:0;text-align:left}
+#activities .activity-titles h2{font-size:clamp(36px,4.5vw,64px);line-height:1.1;font-weight:750}
+#activities .activity-subtitle{font-size:clamp(16px,1.7vw,22px);line-height:1.5;font-weight:500;color:#111;margin:18px 0 0;text-align:left}
+@media(max-width:760px){#activities .activity-titles h2{font-size:36px!important}#activities .activity-subtitle{margin-top:12px}#activities .activity-heading{align-items:flex-end}}
