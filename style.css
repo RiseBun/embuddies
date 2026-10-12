@@ -386,3 +386,14 @@ main h1,main h2,main h3,html:lang(en) main h1,html:lang(en) main h2,html:lang(en
 main h1,main h2,html:lang(en) main h1,html:lang(en) main h2{margin-left:0!important;margin-right:auto!important}
 .brand-home .hero-copy{width:100%}
 .brand-home .editorial-grid>div:first-child,.brand-home .section-heading>h2{align-self:stretch;width:100%}
+/* Partner categories follow the compact, type-led Team list. */
+#partners .partner-template-grid{display:flex;flex-direction:column;max-width:none;margin:48px 0 0;gap:0}
+#partners .partner-template:nth-child(n){position:relative;display:flex;min-height:128px;padding:20px 0;background:transparent!important;color:#000!important;border:0;border-radius:0;box-shadow:none;transform:none;justify-content:center;transition:none}
+#partners .partner-template h3{font-family:Arial,Helvetica,sans-serif;font-size:clamp(36px,5.2vw,72px);font-weight:750;line-height:1.1;letter-spacing:-.045em;margin:0;transition:transform .35s ease}
+#partners .partner-template p,#partners .partner-template-link{max-height:0;opacity:0;overflow:hidden;margin:0;padding:0;font-size:16px;line-height:1.5;transition:max-height .35s ease,opacity .25s ease,margin .35s ease}
+#partners .partner-template:hover h3,#partners .partner-template:focus-visible h3{transform:translateX(12px)}
+#partners .partner-template:hover p,#partners .partner-template:focus-visible p{max-height:60px;opacity:1;margin:14px 0 0}
+#partners .partner-template:hover .partner-template-link,#partners .partner-template:focus-visible .partner-template-link{max-height:36px;opacity:1;margin:10px 0 0}
+@media(max-width:760px){#partners .partner-template:nth-child(n){min-height:112px;padding:18px 0}#partners .partner-template h3{font-size:clamp(30px,7vw,48px)}#partners .partner-template-grid{margin-top:32px}}
+@media(hover:none){#partners .partner-template p,#partners .partner-template-link{max-height:70px;opacity:1;margin-top:10px}}
+@media(prefers-reduced-motion:reduce){#partners .partner-template h3,#partners .partner-template p,#partners .partner-template-link{transition:none}#partners .partner-template:hover h3,#partners .partner-template:focus-visible h3{transform:none}}
