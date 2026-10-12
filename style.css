@@ -366,3 +366,10 @@ html:lang(en) .brand-home .hero-copy{max-width:1140px;width:100%}html:lang(en) .
 .activity-card .button{margin:0 17px 18px;padding:10px 11px;min-height:40px;font-size:12px;gap:16px}
 @media(max-width:600px){.activity-card{flex-basis:min(238px,70vw);max-width:238px}.activity-track{gap:16px}}
 @media(prefers-reduced-motion:reduce){.activity-track{scroll-behavior:auto}}
+
+/* Single concise program section. */
+.program-unified{text-align:center;padding:100px 0}
+.program-unified h2,html:lang(en) .program-unified h2{font-size:clamp(36px,5vw,64px);font-weight:750;line-height:1.15;letter-spacing:-.035em;max-width:none;margin:0 auto 34px;color:#111}
+.program-description{max-width:880px;margin:0 auto;font-size:clamp(18px,2vw,24px);line-height:1.7;color:#555}
+.program-coming{max-width:560px;margin:44px auto 0;font-size:16px;line-height:1.7;letter-spacing:.06em;color:#666}
+@media(max-width:600px){.program-unified{padding:70px 0}.program-coming{margin-top:30px;font-size:14px}}
