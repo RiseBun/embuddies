@@ -437,3 +437,14 @@ main h1,main h2,html:lang(en) main h1,html:lang(en) main h2,#partners .editorial
 
 .program-join{display:flex;justify-content:center;margin-top:44px}
 @media(max-width:600px){.program-join{margin-top:32px}}
+/* Frameless three-line navigation trigger. */
+.site-header .language-switch{display:none!important}
+.site-header .menu-button{min-width:44px;width:44px;height:44px;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;transform:none}
+.site-header .menu-button>span{display:block;position:relative;width:28px;height:2px;background:#111;border-radius:2px;font-size:0!important;line-height:0;transition:background .2s}
+.site-header .menu-button>span::before,.site-header .menu-button>span::after{content:'';position:absolute;left:0;width:28px;height:2px;background:#111;border-radius:2px;transition:transform .25s}
+.site-header .menu-button>span::before{transform:translateY(-8px)}
+.site-header .menu-button>span::after{transform:translateY(8px)}
+.site-header .menu-button[aria-expanded=true]>span{background:transparent}
+.site-header .menu-button[aria-expanded=true]>span::before{transform:rotate(45deg)}
+.site-header .menu-button[aria-expanded=true]>span::after{transform:rotate(-45deg)}
+@media(prefers-reduced-motion:reduce){.site-header .menu-button>span,.site-header .menu-button>span::before,.site-header .menu-button>span::after{transition:none}}
