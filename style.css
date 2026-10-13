@@ -434,3 +434,6 @@ main h1,main h2,html:lang(en) main h1,html:lang(en) main h2,#partners .editorial
 #partners .partner-template p,#partners .partner-template:hover p,#partners .partner-template:focus-visible p{font-size:14px}
 #partners .partner-template-link,#partners .partner-template:hover .partner-template-link,#partners .partner-template:focus-visible .partner-template-link{font-size:13px}
 @media(max-width:600px){#partners .partner-template:nth-child(n){min-height:106px;padding:12px 18px}#partners .partner-template h3{font-size:28px}#partners .partner-template p,#partners .partner-template:hover p,#partners .partner-template:focus-visible p{font-size:13px}}
+
+.program-join{display:flex;justify-content:center;margin-top:44px}
+@media(max-width:600px){.program-join{margin-top:32px}}
