@@ -6,8 +6,8 @@
     "url": "https://github.com/autonomous-ai/openharness",
     "description": "The ultimate harness for coding agents and beyond. All your agents. All your machines. One command center. Start with code, then follow your curiosity and build across disciplines: CAD, circuits, robots, games and music.",
     "license": "MIT",
-    "lastActivity": "2026-10-07",
-    "stars": 1140,
+    "lastActivity": "2026-10-17",
+    "stars": 1288,
     "topics": [
       "3d-modeling",
       "agent-framework",
@@ -18,17 +18,16 @@
       "codex",
       "coding-agents",
       "developer-tools",
-      "domain-specific-harness",
-      "end-to-end-encryption",
-      "esp32"
+      "esp32",
+      "game-development",
+      "mcp-server"
     ],
+    "image": "https://raw.githubusercontent.com/autonomous-ai/openharness/main/.github/assets/hardware/answer.jpg",
+    "imageSource": "https://github.com/autonomous-ai/openharness",
     "hardwareDocs": true,
     "bom": true,
     "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "imageSource"
-    ],
+    "missing": [],
     "evidence": {
       "hardware": [
         ".github/assets/hardware/answer.jpg",
@@ -38,12 +37,12 @@
       "bom": [
         "cli/src/lib/autonomous-device/parts.spec.ts",
         "cli/src/lib/autonomous-device/parts.ts",
-        "devices/harness-device/hardware/bom.csv"
+        "devices/harness-device/hardware/BOM.csv"
       ],
       "guide": [
-        ".github/assets/coding/readme.md",
-        ".github/assets/engines/readme.md",
-        ".github/assets/external-engines/readme.md"
+        ".github/assets/coding/README.md",
+        ".github/assets/engines/README.md",
+        ".github/assets/external-engines/README.md"
       ]
     },
     "discoveredAt": "2026-10-07"
@@ -55,8 +54,8 @@
     "url": "https://github.com/roboninecom/SO-ARM-102",
     "description": "Open-source leader + follower robot arm kit: 5 DOF + gripper, PET-CF frame, parallel gripper, LeRobot-compatible. STEP/STL, BOM, print and assembly guide.",
     "license": "CC-BY-4.0",
-    "lastActivity": "2026-10-07",
-    "stars": 18,
+    "lastActivity": "2026-10-17",
+    "stars": 147,
     "topics": [
       "3d-printing",
       "lerobot",
@@ -65,26 +64,351 @@
       "robotics",
       "so-arm"
     ],
+    "image": "https://raw.githubusercontent.com/roboninecom/SO-ARM-102/main/assets/images/assembly/hardware.jpg",
+    "imageSource": "https://github.com/roboninecom/SO-ARM-102",
     "hardwareDocs": true,
     "bom": true,
     "buildGuide": true,
-    "imageSource": "",
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "models/step/SO-ARM102_Follower.STEP",
+        "models/step/SO-ARM102_Leader.STEP",
+        "models/step/common/SO102.02.010 Base.STEP"
+      ],
+      "bom": [
+        "docs/bom.md",
+        "docs/i18n/ar/docs/bom.md",
+        "docs/i18n/de/docs/bom.md"
+      ],
+      "guide": [
+        "README.md",
+        "assets/images/assembly/hardware.jpg",
+        "assets/images/assembly/printed-parts.jpg"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "mit-acl/mighty",
+    "name": "mighty",
+    "author": "mit-acl",
+    "url": "https://github.com/mit-acl/mighty",
+    "description": "MIGHTY: Hermite spline-based real-time trajectory planner for single- and multi-agent UAVs and ground robots (ROS 2). Accepted to IEEE RA-L.",
+    "license": "BSD-3-Clause",
+    "lastActivity": "2026-10-16",
+    "stars": 420,
+    "topics": [
+      "exploration",
+      "ground-robot",
+      "hardware",
+      "navigation",
+      "planning",
+      "robotics",
+      "ros2",
+      "simulation",
+      "uavs"
+    ],
+    "image": "https://raw.githubusercontent.com/mit-acl/mighty/main/meshes/obstacles/model/ConcAggr.jpg",
+    "imageSource": "https://github.com/mit-acl/mighty",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
     "missing": [
-      "imageSource"
+      "bom"
     ],
     "evidence": {
       "hardware": [
-        "models/step/common/so102.02.010 base.step",
-        "models/step/common/so102.02.020 base ring.step",
-        "models/step/common/so102.02.030 base washer.step"
+        "meshes/asus_camera/asus_camera_simple.stl",
+        "meshes/hokuyo_utm30lx/hokuyo_utm_30lx.stl",
+        "meshes/kinect_camera/kinect_camera_simple.stl"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "docs/plans/persistent_global_map_plan.md"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "nu31hackerspace/prismo",
+    "name": "prismo",
+    "author": "nu31hackerspace",
+    "url": "https://github.com/nu31hackerspace/prismo",
+    "description": "Open-source $10 NFC/RFID door access controller for hackerspaces and makerspaces. ESP32-C3 + PN532, MQTT, Home Assistant, self-hosted",
+    "license": "MIT",
+    "lastActivity": "2026-10-16",
+    "stars": 38,
+    "topics": [
+      "access-control-system",
+      "diy",
+      "door-lock",
+      "esp32",
+      "esp32-c3",
+      "hackerspace",
+      "hardware",
+      "kicad",
+      "makerspace",
+      "open-hardware",
+      "pn532",
+      "rfid"
+    ],
+    "image": "https://raw.githubusercontent.com/nu31hackerspace/prismo/main/docs/instruction/step_11.jpg",
+    "imageSource": "https://github.com/nu31hackerspace/prismo",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/.gitignore",
+        "hardware/README.md",
+        "hardware/led_pcb.step"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "blackbox-e2e/README.md",
+        "blackbox-e2e/tag-emulator/README.md"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "openamrobot/openamr-platform-hw",
+    "name": "openamr-platform-hw",
+    "author": "openAMRobot",
+    "url": "https://github.com/openAMRobot/openamr-platform-hw",
+    "description": "OpenAMRobot mobile-base hardware: mechanical and electrical designs, CAD, BOMs, wiring, manufacturing, and assembly assets.",
+    "license": "CERN-OHL-P-2.0",
+    "lastActivity": "2026-10-16",
+    "stars": 27,
+    "topics": [
+      "open-hardware",
+      "open-source",
+      "openamrobot",
+      "physical-ai",
+      "robotics",
+      "ros2"
+    ],
+    "image": "https://raw.githubusercontent.com/openAMRobot/openamr-platform-hw/main/mechanical/renderings/AMR_SME_logistics.jpg",
+    "imageSource": "https://github.com/openAMRobot/openamr-platform-hw",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "datasheets/ZLTech/wheel_ZLLG80ASM250/ZLLG80ASM250-L V3.0single-shaft.STEP",
+        "electrical/pcb/.gitkeep",
+        "interfaces/mechanical/.gitkeep"
       ],
       "bom": [
-        "docs/bom.md"
+        "manufacturing/bom/BOM_specs_MMP.xlsx",
+        "manufacturing/bom/components-bom.md",
+        "manufacturing/bom/mechanical-bom.md"
       ],
       "guide": [
-        "readme.md",
-        "assets/images/assembly/hardware.jpg",
-        "assets/images/assembly/printed-parts.jpg"
+        "README.md",
+        "datasheets/README.md",
+        "datasheets/TZBot/README.md"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "opendrone-hw/openaio",
+    "name": "OpenAIO",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenAIO",
+    "description": "Open-source AIO for 2-6S toothpick quads: flight controller, 4-in-1 AM32 ESC and ExpressLRS receiver, 25.5x25.5 mm.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-10-16",
+    "stars": 13,
+    "topics": [
+      "aio",
+      "kicad",
+      "open-hardware",
+      "status-in-progress"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenAIO/main/images/back.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenAIO",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/OpenAIO.kicad_dru",
+        "hardware/OpenAIO.kicad_pcb",
+        "hardware/OpenAIO.kicad_pro"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "firmware/README.md"
+      ]
+    },
+    "discoveredAt": "2026-10-17"
+  },
+  {
+    "id": "dorianborian/sesame-robot",
+    "name": "sesame-robot",
+    "author": "dorianborian",
+    "url": "https://github.com/dorianborian/sesame-robot",
+    "description": "An open and affordable mini quadruped robot based on ESP32.",
+    "license": "Apache-2.0",
+    "lastActivity": "2026-10-15",
+    "stars": 4717,
+    "topics": [
+      "hardware",
+      "robotics",
+      "walking-robot"
+    ],
+    "image": "https://raw.githubusercontent.com/dorianborian/sesame-robot/main/docs/build-guide/assets/all-hardware.png",
+    "imageSource": "https://github.com/dorianborian/sesame-robot",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "hardware/README.md",
+        "hardware/bom/README.md",
+        "hardware/cad/README.md"
+      ],
+      "bom": [
+        "hardware/bom/README.md"
+      ],
+      "guide": [
+        "README.md",
+        "docs/README.md",
+        "docs/build-guide/README.md"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "iandchasse/silkscreen-pcb",
+    "name": "silkscreen-pcb",
+    "author": "iandchasse",
+    "url": "https://github.com/iandchasse/silkscreen-pcb",
+    "description": "Silkscreen: open-hardware ESP32-S3 e-paper reader mainboard (KiCad 9). Formerly the de-link hub.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-10-15",
+    "stars": 579,
+    "topics": [
+      "e-paper",
+      "ereader",
+      "esp32-s3",
+      "kicad",
+      "open-hardware"
+    ],
+    "image": "https://raw.githubusercontent.com/iandchasse/silkscreen-pcb/master/docs/final-review-2026-09-19/sections/img/power_power_strip_assembly.png",
+    "imageSource": "https://github.com/iandchasse/silkscreen-pcb",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "KiCad/9.0/3rdparty/FH34SRJ_24pin/FH34SRJ-24S-0.5SH.stp",
+        "KiCad/9.0/3rdparty/FH34SRJ_6pin/WFH-2100190.stp",
+        "KiCad/9.0/3rdparty/Mjtp1117/MJTP1117.stp"
+      ],
+      "bom": [
+        "fabrication/BOM.md",
+        "production/bom.csv"
+      ],
+      "guide": [
+        "README.md",
+        "docs/HARDWARE.md",
+        "docs/LED_ALT.md"
+      ]
+    },
+    "discoveredAt": "2026-10-17"
+  },
+  {
+    "id": "nisparks/sparkshift",
+    "name": "SparkShift",
+    "author": "nisparks",
+    "url": "https://github.com/nisparks/SparkShift",
+    "description": "HGX quick-change hotend system with an independent carriage-mounted cam release. Community development prototype.",
+    "license": "GPL-3.0",
+    "lastActivity": "2026-10-15",
+    "stars": 28,
+    "topics": [
+      "3d-printing",
+      "extruder",
+      "fdm",
+      "hgx",
+      "hotend",
+      "open-hardware",
+      "toolchanger"
+    ],
+    "image": "https://raw.githubusercontent.com/nisparks/SparkShift/main/images_v16/v16_assembly_closed_front_iso.png",
+    "imageSource": "https://github.com/nisparks/SparkShift",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "cad/SparkShift_AHG_min_v16.f3d",
+        "cad/SparkShift_AHG_min_v16.step",
+        "calibration_v16/Servo_21T_fit_gauges.stl"
+      ],
+      "bom": [
+        "BOM.md"
+      ],
+      "guide": [
+        "README.md",
+        "calibration_v16/README.md",
+        "playback_v16/README.md"
+      ]
+    },
+    "discoveredAt": "2026-10-17"
+  },
+  {
+    "id": "ninsmiracle/yarelampgo",
+    "name": "YareLampGo",
+    "author": "ninsmiracle",
+    "url": "https://github.com/ninsmiracle/YareLampGo",
+    "description": "Local-first runtime for an embodied AI lamp robot with safe motion, web control, voice, and OpenClaw integration.",
+    "license": "GPL-3.0",
+    "lastActivity": "2026-10-12",
+    "stars": 37,
+    "topics": [
+      "ai",
+      "hardware",
+      "openclaw",
+      "python",
+      "robotics"
+    ],
+    "image": "https://raw.githubusercontent.com/ninsmiracle/YareLampGo/main/docs/hardware/v2/assembly-manual-media/image30.jpeg",
+    "imageSource": "https://github.com/ninsmiracle/YareLampGo",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "assets/printable/YareLampGo_V2.0/YareLampGo_V2.0_assembly.step",
+        "docs/hardware/README.en.md",
+        "docs/hardware/README.md"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "assets/printable/README.md",
+        "docs/README.en.md"
       ]
     },
     "discoveredAt": "2026-10-07"
@@ -135,95 +459,6 @@
     "discoveredAt": "2026-10-07"
   },
   {
-    "id": "nu31hackerspace/prismo",
-    "name": "prismo",
-    "author": "nu31hackerspace",
-    "url": "https://github.com/nu31hackerspace/prismo",
-    "description": "Open-source $10 NFC/RFID door access controller for hackerspaces and makerspaces. ESP32-C3 + PN532, MQTT, Home Assistant, self-hosted",
-    "license": "MIT",
-    "lastActivity": "2026-10-06",
-    "stars": 38,
-    "topics": [
-      "access-control-system",
-      "diy",
-      "door-lock",
-      "esp32",
-      "esp32-c3",
-      "hackerspace",
-      "hardware",
-      "kicad",
-      "makerspace",
-      "open-hardware",
-      "pn532",
-      "rfid"
-    ],
-    "hardwareDocs": true,
-    "bom": false,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "bom",
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "hardware/.gitignore",
-        "hardware/readme.md",
-        "hardware/led_pcb.step"
-      ],
-      "bom": [],
-      "guide": [
-        "readme.md",
-        "blackbox-e2e/readme.md",
-        "blackbox-e2e/tag-emulator/readme.md"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
-    "id": "openamrobot/openamr-platform-hw",
-    "name": "openamr-platform-hw",
-    "author": "openAMRobot",
-    "url": "https://github.com/openAMRobot/openamr-platform-hw",
-    "description": "OpenAMRobot mobile-base hardware: mechanical and electrical designs, CAD, BOMs, wiring, manufacturing, and assembly assets.",
-    "license": "CERN-OHL-P-2.0",
-    "lastActivity": "2026-10-06",
-    "stars": 26,
-    "topics": [
-      "open-hardware",
-      "open-source",
-      "openamrobot",
-      "physical-ai",
-      "robotics",
-      "ros2"
-    ],
-    "hardwareDocs": true,
-    "bom": true,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "datasheets/zltech/wheel_zllg80asm250/zllg80asm250-l v3.0single-shaft.step",
-        "electrical/pcb/.gitkeep",
-        "interfaces/mechanical/.gitkeep"
-      ],
-      "bom": [
-        "manufacturing/bom/bom_specs_mmp.xlsx",
-        "manufacturing/bom/components-bom.md",
-        "manufacturing/bom/mechanical-bom.md"
-      ],
-      "guide": [
-        "readme.md",
-        "datasheets/readme.md",
-        "datasheets/tzbot/readme.md"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
     "id": "reiserlab/fly-lab-gear",
     "name": "Fly-Lab-Gear",
     "author": "reiserlab",
@@ -262,45 +497,6 @@
     "discoveredAt": "2026-10-07"
   },
   {
-    "id": "ninsmiracle/yarelampgo",
-    "name": "YareLampGo",
-    "author": "ninsmiracle",
-    "url": "https://github.com/ninsmiracle/YareLampGo",
-    "description": "Local-first runtime for an embodied AI lamp robot with safe motion, web control, voice, and OpenClaw integration.",
-    "license": "GPL-3.0",
-    "lastActivity": "2026-10-03",
-    "stars": 33,
-    "topics": [
-      "ai",
-      "hardware",
-      "openclaw",
-      "python",
-      "robotics"
-    ],
-    "hardwareDocs": true,
-    "bom": false,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "bom",
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "assets/printable/yarelampgo_v2.0/yarelampgo_v2.0_assembly.step",
-        "docs/hardware/readme.en.md",
-        "docs/hardware/readme.md"
-      ],
-      "bom": [],
-      "guide": [
-        "readme.md",
-        "assets/printable/readme.md",
-        "docs/readme.en.md"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
     "id": "solitary-dev-50/tongdou",
     "name": "tongdou",
     "author": "solitary-dev-50",
@@ -308,7 +504,7 @@
     "description": "Official repository for TongDou, a real working desktop companion robot. Schematics, prototype media, and phased open-source releases.",
     "license": "CERN-OHL-P-2.0",
     "lastActivity": "2026-10-01",
-    "stars": 37,
+    "stars": 40,
     "topics": [
       "cern-ohl-p",
       "companion-robot",
@@ -320,25 +516,25 @@
       "schematics",
       "tongdou"
     ],
+    "image": "https://raw.githubusercontent.com/solitary-dev-50/tongdou/main/media/images/tongdou-hero-45-degree.jpg",
+    "imageSource": "https://github.com/solitary-dev-50/tongdou",
     "hardwareDocs": true,
     "bom": false,
     "buildGuide": true,
-    "imageSource": "",
     "missing": [
-      "bom",
-      "imageSource"
+      "bom"
     ],
     "evidence": {
       "hardware": [
-        "demo_firmware/firmware/src/hardware/audioinput.cpp",
-        "demo_firmware/firmware/src/hardware/audioinput.h",
-        "demo_firmware/firmware/src/hardware/audiooutput.cpp"
+        "demo_firmware/firmware/src/hardware/AudioInput.cpp",
+        "demo_firmware/firmware/src/hardware/AudioInput.h",
+        "demo_firmware/firmware/src/hardware/AudioOutput.cpp"
       ],
       "bom": [],
       "guide": [
-        "readme.md",
-        "demo_firmware/readme.md",
-        "demo_firmware/firmware/data/audio/readme.md"
+        "README.md",
+        "demo_firmware/README.md",
+        "demo_firmware/firmware/data/audio/README.md"
       ]
     },
     "discoveredAt": "2026-10-07"
@@ -361,13 +557,13 @@
       "robotics",
       "tinymovr-motor-controller"
     ],
+    "image": "https://raw.githubusercontent.com/motionlayer/Tinymovr/master/docs/hardware/magnet_mount.jpg",
+    "imageSource": "https://github.com/motionlayer/Tinymovr",
     "hardwareDocs": true,
     "bom": false,
     "buildGuide": true,
-    "imageSource": "",
     "missing": [
-      "bom",
-      "imageSource"
+      "bom"
     ],
     "evidence": {
       "hardware": [
@@ -378,46 +574,8 @@
       "bom": [],
       "guide": [
         ".github/workflows/docs.yml",
-        "readme.md",
-        "docs/license.txt"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
-    "id": "dorianborian/sesame-robot",
-    "name": "sesame-robot",
-    "author": "dorianborian",
-    "url": "https://github.com/dorianborian/sesame-robot",
-    "description": "An open and affordable mini quadruped robot based on ESP32.",
-    "license": "Apache-2.0",
-    "lastActivity": "2026-09-13",
-    "stars": 4572,
-    "topics": [
-      "hardware",
-      "robotics",
-      "walking-robot"
-    ],
-    "hardwareDocs": true,
-    "bom": true,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "hardware/readme.md",
-        "hardware/bom/readme.md",
-        "hardware/cad/readme.md"
-      ],
-      "bom": [
-        "hardware/bom/readme.md"
-      ],
-      "guide": [
-        "readme.md",
-        "docs/readme.md",
-        "docs/build-guide/readme.md"
+        "README.md",
+        "docs/LICENSE.txt"
       ]
     },
     "discoveredAt": "2026-10-07"
@@ -462,48 +620,6 @@
         "readme.md",
         "electrical/readme.md",
         "electrical/pcb/readme.md"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
-    "id": "mit-acl/mighty",
-    "name": "mighty",
-    "author": "mit-acl",
-    "url": "https://github.com/mit-acl/mighty",
-    "description": "MIGHTY: Hermite spline-based real-time trajectory planner for single- and multi-agent UAVs and ground robots (ROS 2). Accepted to IEEE RA-L.",
-    "license": "BSD-3-Clause",
-    "lastActivity": "2026-08-31",
-    "stars": 397,
-    "topics": [
-      "exploration",
-      "ground-robot",
-      "hardware",
-      "navigation",
-      "planning",
-      "robotics",
-      "ros2",
-      "simulation",
-      "uavs"
-    ],
-    "hardwareDocs": true,
-    "bom": false,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "bom",
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "meshes/asus_camera/asus_camera_simple.stl",
-        "meshes/hokuyo_utm30lx/hokuyo_utm_30lx.stl",
-        "meshes/kinect_camera/kinect_camera_simple.stl"
-      ],
-      "bom": [],
-      "guide": [
-        "readme.md",
-        "docs/plans/persistent_global_map_plan.md"
       ]
     },
     "discoveredAt": "2026-10-07"
