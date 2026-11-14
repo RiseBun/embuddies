@@ -1,13 +1,52 @@
 [
   {
+    "id": "ai-maker-lab/yarelampgo",
+    "name": "YareLampGo",
+    "author": "ai-maker-lab",
+    "url": "https://github.com/ai-maker-lab/YareLampGo",
+    "description": "Local-first runtime for an embodied AI lamp robot with safe motion, web control, voice, and OpenClaw integration.",
+    "license": "GPL-3.0",
+    "lastActivity": "2026-11-14",
+    "stars": 55,
+    "topics": [
+      "ai",
+      "hardware",
+      "openclaw",
+      "python",
+      "robotics"
+    ],
+    "image": "https://raw.githubusercontent.com/ai-maker-lab/YareLampGo/main/docs/hardware/v2/assembly-manual-media/image30.jpeg",
+    "imageSource": "https://github.com/ai-maker-lab/YareLampGo",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "assets/printable/YareLampGo_V2.0/YareLampGo_V2.0_assembly.step",
+        "docs/hardware/README.en.md",
+        "docs/hardware/README.md"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "assets/printable/README.md",
+        "docs/README.en.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
     "id": "autonomous-ai/openharness",
     "name": "openharness",
     "author": "autonomous-ai",
     "url": "https://github.com/autonomous-ai/openharness",
     "description": "The ultimate harness for coding agents and beyond. All your agents. All your machines. One command center. Start with code, then follow your curiosity and build across disciplines: CAD, circuits, robots, games and music.",
     "license": "MIT",
-    "lastActivity": "2026-10-07",
-    "stars": 1140,
+    "lastActivity": "2026-11-14",
+    "stars": 1487,
     "topics": [
       "3d-modeling",
       "agent-framework",
@@ -18,17 +57,16 @@
       "codex",
       "coding-agents",
       "developer-tools",
-      "domain-specific-harness",
-      "end-to-end-encryption",
-      "esp32"
+      "esp32",
+      "game-development",
+      "mcp-server"
     ],
+    "image": "https://raw.githubusercontent.com/autonomous-ai/openharness/main/.github/assets/hardware/answer.jpg",
+    "imageSource": "https://github.com/autonomous-ai/openharness",
     "hardwareDocs": true,
     "bom": true,
     "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "imageSource"
-    ],
+    "missing": [],
     "evidence": {
       "hardware": [
         ".github/assets/hardware/answer.jpg",
@@ -38,15 +76,422 @@
       "bom": [
         "cli/src/lib/autonomous-device/parts.spec.ts",
         "cli/src/lib/autonomous-device/parts.ts",
-        "devices/harness-device/hardware/bom.csv"
+        "desktop/lib/web/parts/deferred_part.dart"
       ],
       "guide": [
-        ".github/assets/coding/readme.md",
-        ".github/assets/engines/readme.md",
-        ".github/assets/external-engines/readme.md"
+        ".github/assets/coding/README.md",
+        ".github/assets/engines/README.md",
+        ".github/assets/external-engines/README.md"
       ]
     },
     "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "koppar-ai/koppar-lte-modem",
+    "name": "koppar-lte-modem",
+    "author": "Koppar-AI",
+    "url": "https://github.com/Koppar-AI/koppar-lte-modem",
+    "description": "A phone line over USB-C: LTE data, SMS and voice calls with the call audio on USB. A 4-layer KiCad board designed by Koppar from a one-page spec.",
+    "license": "CERN-OHL-P-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 66,
+    "topics": [
+      "ec25",
+      "kicad",
+      "lte",
+      "open-hardware",
+      "pcb",
+      "quectel",
+      "rp2040",
+      "sms",
+      "usb-c",
+      "voip"
+    ],
+    "image": "https://raw.githubusercontent.com/Koppar-AI/koppar-lte-modem/main/images/hero.png",
+    "imageSource": "https://github.com/Koppar-AI/koppar-lte-modem",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "board/koppar-lte-modem.kicad_pcb",
+        "board/koppar-lte-modem.kicad_sch",
+        "board/models/Quectel_EC2x-EG2x_LCC-LGA-144_L32.0-W29.0.step"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "firmware/README.md",
+        "host/README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "motionlayer/tinymovr",
+    "name": "Tinymovr",
+    "author": "motionlayer",
+    "url": "https://github.com/motionlayer/Tinymovr",
+    "description": "Compact brushless motor controller with FOC, integrated absolute angle sensor and CAN Bus.",
+    "license": "GPL-3.0",
+    "lastActivity": "2026-11-14",
+    "stars": 325,
+    "topics": [
+      "bldc",
+      "firmware",
+      "foc",
+      "hardware",
+      "motor-controller",
+      "robotics",
+      "tinymovr-motor-controller"
+    ],
+    "image": "https://raw.githubusercontent.com/motionlayer/Tinymovr/master/docs/hardware/magnet_mount.jpg",
+    "imageSource": "https://github.com/motionlayer/Tinymovr",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "docs/hardware/connections.png",
+        "docs/hardware/connectors.png",
+        "docs/hardware/connectors_m5.png"
+      ],
+      "bom": [],
+      "guide": [
+        ".github/workflows/docs.yml",
+        "README.md",
+        "docs/LICENSE.txt"
+      ]
+    },
+    "discoveredAt": "2026-10-07"
+  },
+  {
+    "id": "opendrone-hw/openaio",
+    "name": "OpenAIO",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenAIO",
+    "description": "Open-source AIO for 2-6S toothpick quads: flight controller, 4-in-1 AM32 ESC and ExpressLRS receiver, 25.5x25.5 mm.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 21,
+    "topics": [
+      "aio",
+      "am32",
+      "betaflight",
+      "expresslrs",
+      "kicad",
+      "open-hardware",
+      "opendrone",
+      "status-in-progress"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenAIO/main/images/back.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenAIO",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/OpenAIO.kicad_dru",
+        "hardware/OpenAIO.kicad_pcb",
+        "hardware/OpenAIO.kicad_pro"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "firmware/README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "opendrone-hw/openfc-lite",
+    "name": "OpenFC-Lite",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenFC-Lite",
+    "description": "Open-source Betaflight flight controller. RP2354B, 30.5x30.5 mm, 6-layer, 3-8S, CERN-OHL-S-2.0.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 86,
+    "topics": [
+      "betaflight",
+      "flight-controller",
+      "kicad",
+      "open-hardware",
+      "opendrone",
+      "status-beta"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenFC-Lite/main/images/back.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenFC-Lite",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/OpenFC.kicad_dru",
+        "hardware/OpenFC.kicad_pcb",
+        "hardware/OpenFC.kicad_pro"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "opendrone-hw/openfc-lite-mini",
+    "name": "OpenFC-Lite-Mini",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenFC-Lite-Mini",
+    "description": "Open-source Betaflight flight controller. RP2354A, 20x20 mm, 6-layer, 3-6S, CERN-OHL-S-2.0.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 147,
+    "topics": [
+      "betaflight",
+      "flight-controller",
+      "kicad",
+      "open-hardware",
+      "opendrone",
+      "status-beta"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenFC-Lite-Mini/main/images/back.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenFC-Lite-Mini",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/OpenFC.kicad_dru",
+        "hardware/OpenFC.kicad_pcb",
+        "hardware/OpenFC.kicad_pro"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md",
+        "hardware/research/imu-selection/README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "opendrone-hw/openframe-5f",
+    "name": "OpenFrame-5F",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenFrame-5F",
+    "description": "OpenFrame 5in CNC carbon fibre freestyle FPV frame: Onshape CAD source and parts lists. STEP and drawings published at release.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 23,
+    "topics": [
+      "cad",
+      "fpv",
+      "frame",
+      "open-hardware",
+      "opendrone",
+      "status-alpha"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenFrame-5F/main/images/assembly.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenFrame-5F",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "cad/onshape.json",
+        "cad/render.json",
+        "releases/rev1/step/18mmx4mm.step"
+      ],
+      "bom": [
+        "bom.csv",
+        "images/parts/acc-frm-arm-5.png",
+        "images/parts/acc-frm-bot-5.png"
+      ],
+      "guide": [
+        "README.md",
+        "docs/.gitkeep",
+        "images/assembly.png"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "opendrone-hw/openrx-gemini",
+    "name": "OpenRX-Gemini",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenRX-Gemini",
+    "description": "Open-source dual-radio, dual-band ExpressLRS receiver for Gemini and Xrossband.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 12,
+    "topics": [
+      "expresslrs",
+      "kicad",
+      "open-hardware",
+      "opendrone",
+      "receiver",
+      "status-alpha"
+    ],
+    "image": "https://raw.githubusercontent.com/OpenDrone-hw/OpenRX-Gemini/main/images/back.png",
+    "imageSource": "https://github.com/OpenDrone-hw/OpenRX-Gemini",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/OpenRX-Gemini.kicad_dru",
+        "hardware/OpenRX-Gemini.kicad_pcb",
+        "hardware/OpenRX-Gemini.kicad_pro"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "opendrone-hw/openvtx",
+    "name": "OpenVTX",
+    "author": "OpenDrone-hw",
+    "url": "https://github.com/OpenDrone-hw/OpenVTX",
+    "description": "Open-source 5.8 GHz analog video transmitter with software-defined OSD (RTC6705, STM32G4). Early stage, no schematic yet.",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 28,
+    "topics": [
+      "kicad",
+      "open-hardware",
+      "opendrone",
+      "status-planned",
+      "vtx"
+    ],
+    "image": "",
+    "imageSource": "",
+    "hardwareDocs": true,
+    "bom": false,
+    "buildGuide": true,
+    "missing": [
+      "bom",
+      "imageSource"
+    ],
+    "evidence": {
+      "hardware": [
+        "hardware/DESIGN.md",
+        "hardware/OpenVTX.kicad_pro",
+        "hardware/fp-lib-table"
+      ],
+      "bom": [],
+      "guide": [
+        "README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "spaceflight-rocketry-giessen-e-v/telemetry",
+    "name": "Telemetry",
+    "author": "Spaceflight-Rocketry-Giessen-e-V",
+    "url": "https://github.com/Spaceflight-Rocketry-Giessen-e-V/Telemetry",
+    "description": "Open-Source Rocket Telemetry System Based On Radiocrafts RC232 Radio Modules",
+    "license": "CERN-OHL-S-2.0",
+    "lastActivity": "2026-11-14",
+    "stars": 27,
+    "topics": [
+      "antennas",
+      "electronics",
+      "library",
+      "open-hardware",
+      "radiocrafts",
+      "rocketry"
+    ],
+    "image": "https://raw.githubusercontent.com/Spaceflight-Rocketry-Giessen-e-V/Telemetry/main/docs/images/helical_antenna_assembly/0302_winding_template_attachment.jpg",
+    "imageSource": "https://github.com/Spaceflight-Rocketry-Giessen-e-V/Telemetry",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "groundstation/antenna/helical/Antenna Assembly.step",
+        "groundstation/antenna/helical/Auxiliary Design Files/Bottom Cone.step",
+        "groundstation/antenna/helical/Auxiliary Design Files/Bottom Cone.stl"
+      ],
+      "bom": [
+        "groundstation/antenna/patch/docs/bom.csv"
+      ],
+      "guide": [
+        "README.md",
+        "docs/README.md",
+        "docs/design_overview.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
+  },
+  {
+    "id": "ziroeda/ziro-designer",
+    "name": "ziro-designer",
+    "author": "ZiroEDA",
+    "url": "https://github.com/ZiroEDA/ziro-designer",
+    "description": "KiCad 10 in the browser: open, edit and share real schematic and PCB projects with nothing to install. GPL-3.0, end-to-end encrypted cloud projects.",
+    "license": "GPL-3.0",
+    "lastActivity": "2026-11-14",
+    "stars": 88,
+    "topics": [
+      "browser",
+      "eda",
+      "electronics",
+      "end-to-end-encryption",
+      "kicad",
+      "open-hardware",
+      "pcb",
+      "pcb-design",
+      "schematic",
+      "typescript",
+      "webgl"
+    ],
+    "image": "https://raw.githubusercontent.com/ZiroEDA/ziro-designer/main/designer/public/templates/stm32f100-discovery-shield/meta/board_stm32vl_discovery.png",
+    "imageSource": "https://github.com/ZiroEDA/ziro-designer",
+    "hardwareDocs": true,
+    "bom": true,
+    "buildGuide": true,
+    "missing": [],
+    "evidence": {
+      "hardware": [
+        "designer/public/demos/ecc83/ecc83-pp.kicad_pcb",
+        "designer/public/demos/ecc83/ecc83-pp.kicad_sch",
+        "designer/public/demos/ecc83/ecc83-pp_v2.kicad_pcb"
+      ],
+      "bom": [
+        "eeschema/exporters/bom.ts",
+        "qa/unittests/eeschema/bom.test.ts"
+      ],
+      "guide": [
+        "README.md",
+        "bitmaps_png/sources/launcher/README.md",
+        "bitmaps_png/sources/manager/README.md"
+      ]
+    },
+    "discoveredAt": "2026-11-14"
   },
   {
     "id": "roboninecom/so-arm-102",
@@ -339,47 +784,6 @@
         "readme.md",
         "demo_firmware/readme.md",
         "demo_firmware/firmware/data/audio/readme.md"
-      ]
-    },
-    "discoveredAt": "2026-10-07"
-  },
-  {
-    "id": "motionlayer/tinymovr",
-    "name": "Tinymovr",
-    "author": "motionlayer",
-    "url": "https://github.com/motionlayer/Tinymovr",
-    "description": "Compact brushless motor controller with FOC, integrated absolute angle sensor and CAN Bus.",
-    "license": "GPL-3.0",
-    "lastActivity": "2026-09-28",
-    "stars": 321,
-    "topics": [
-      "bldc",
-      "firmware",
-      "foc",
-      "hardware",
-      "motor-controller",
-      "robotics",
-      "tinymovr-motor-controller"
-    ],
-    "hardwareDocs": true,
-    "bom": false,
-    "buildGuide": true,
-    "imageSource": "",
-    "missing": [
-      "bom",
-      "imageSource"
-    ],
-    "evidence": {
-      "hardware": [
-        "docs/hardware/connections.png",
-        "docs/hardware/connectors.png",
-        "docs/hardware/connectors_m5.png"
-      ],
-      "bom": [],
-      "guide": [
-        ".github/workflows/docs.yml",
-        "readme.md",
-        "docs/license.txt"
       ]
     },
     "discoveredAt": "2026-10-07"
